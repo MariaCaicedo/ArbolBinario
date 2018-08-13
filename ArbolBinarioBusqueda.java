@@ -27,9 +27,17 @@ public class ArbolBinarioBusqueda {
 
     public void mustraDatoEnInorden(Nodo raiz) {
         if (raiz != null) {
-            mustraDatoEnInorden(raiz.getLigaDerecha());
-            System.out.println(raiz.getDato());
             mustraDatoEnInorden(raiz.getLigaIzquierda());
+            System.out.println(raiz.getDato());
+            mustraDatoEnInorden(raiz.getLigaDerecha());
+        }
+    }
+
+    public void mustraDatoEnPosorden(Nodo raiz) {
+        if (raiz != null) {
+            mustraDatoEnPosorden(raiz.getLigaIzquierda());
+            mustraDatoEnPosorden(raiz.getLigaDerecha());
+            System.out.println(raiz);
         }
     }
 

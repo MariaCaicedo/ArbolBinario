@@ -64,25 +64,25 @@ public class ArbolBinarioBusqueda {
         }
     }
 
-    public void eliminar(Nodo nodo, int dato) { 
-        if (nodo == null) { 
+    public void eliminar(Nodo raiz, int dato) { 
+        if (raiz == null) { 
             return;
-        } else if (nodo.dato == dato) { 
-            if (nodo == null && nodo == null) { 
-                nodo = null;
+        } else if (raiz.dato == dato) { 
+            if (raiz == null && raiz == null) { 
+                raiz = null;
                 return;
-            } else if (nodo != null && nodo == null) {
-                nodo = nodo;
+            } else if (raiz != null && raiz == null) {
+                raiz = this.raiz;
                 return;
-            } else if (nodo == null && nodo != null) {
-                nodo = nodo;
+            } else if (raiz == null && raiz != null) {
+                raiz = this.raiz;
                 return;
             } else { 
-                Nodo a = nodo; 
-                nodo = nodo;
-                Nodo aux = nodo;
+                Nodo a = raiz; 
+                raiz = this.raiz;
+                Nodo aux = raiz;
                 while (true) {
-                    if (nodo == null) {
+                    if (raiz == null) {
                         aux = a;
                     } else {
                         aux = a;
@@ -93,10 +93,10 @@ public class ArbolBinarioBusqueda {
             }
         }
 
-        if (dato < nodo.dato) { 
-            eliminar(nodo, dato);
+        if (dato < raiz.dato) { 
+            eliminar(raiz, dato);
         } else {
-            eliminar(nodo, dato);
+            eliminar(raiz, dato);
         }
     }
 }

@@ -56,23 +56,23 @@ public class ArbolBinarioBusqueda {
         }
     }
 
-    public void eliminar(Nodo nodo, int n) { // recibe el nodo raiz
-        if (nodo == null) { // si el nodo es null no hace nada mas
+    public void eliminar(Nodo nodo, int n) { // recibe el nodo raiz; recibe mas quue el nodo raiz, que es lo otro que recibe y por que? piensalo y corrige el dato que debe recibir.
+        if (nodo == null) {
             return;
-        } else if (nodo.dato == n) { // se mira si el dato del nodo es el que se quiere borrar
-            if (nodo == null && nodo == null) { // si el nodo es una hoja simplemente se elimina
+        } else if (nodo.dato == n) {
+            if (nodo == null && nodo == null) { // si el nodo es una hoja simplemente se elimina; la condicion es redundante, pregunta lo mismo 2 veces, revisa amor.
                 nodo = null;
                 return;
-            } else if (nodo != null && nodo == null) {// si el nodo solo tiene un hijo izquierdo el nodo se hace igual a ese hijo izquierdo
+            } else if (nodo != null && nodo == null) {// si el nodo solo tiene un hijo izquierdo el nodo se hace igual a ese hijo izquierdo; en nigun ligar pregunta por los hijos, revisa que metodos debes llamar de nodo para que el nodo te diga si tiene o no hijos.
                 nodo = nodo;
                 return;
-            } else if (nodo == null && nodo != null) {// si el nodo solo tiene un hijo derecho el nodo se hace igual a ese hijo derecho
+            } else if (nodo == null && nodo != null) {// si el nodo solo tiene un hijo derecho el nodo se hace igual a ese hijo derecho; el mismo problema de lla condicion anterior.
                 nodo = nodo;
                 return;
-            } else { // si el nodo tiene dos hijos, como el ultimo elemento de la raiz izquierda siempre es menor al primer de la raiz derecha
-                Nodo a = nodo; // el nodo pasa a ser la raiz izq y se pone esa raiz derecha como hija der de ese mismo nodo
-                nodo = nodo;
-                Nodo aux = nodo;
+            } else { // si el nodo tiene dos hijos, como el ultimo elemento de la raiz izquierda siempre es menor al primer de la raiz derecha, no logro entender esta perte del codigo amor.
+                Nodo a = nodo; // el nodo pasa a ser la raiz izq y se pone esa raiz derecha como hija der de ese mismo nodo; coloca nombres descriptivos, ¿para que es a?.
+                nodo = nodo; // por quue nodo = nodo?
+                Nodo aux = nodo; // para que es el auxiliar, que vas hacer con el, cambiale el nombre a algo que diga que se va hacer.
                 while (true) {
                     if (nodo == null) {
                         aux = a;
@@ -84,9 +84,8 @@ public class ArbolBinarioBusqueda {
                 return;
             }
         }
-
-        if (n < nodo.dato) { // recursion si el numero buscado es menor al que esta en el nodo actual se invoca a si mismo con el hijo izq
-            eliminar(nodo, n);
+        if (n < nodo.dato) { // recursion si el numero buscado es menor al que esta en el nodo actual se invoca a si mismo con el hijo izq, creo que ya corregiste lo del numero arriba.
+            eliminar(nodo, n);//creo que ya corregiste lo de llamar a la ligaizquierda o derecha segun el caso
         } else {
             eliminar(nodo, n);// en cambio si es mayor o igual se invoca a si mismo con el hijo der 
         }

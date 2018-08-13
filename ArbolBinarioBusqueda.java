@@ -64,21 +64,21 @@ public class ArbolBinarioBusqueda {
         }
     }
 
-    public void eliminar(Nodo nodo, int n) { // recibe el nodo raiz
-        if (nodo == null) { // si el nodo es null no hace nada mas
+    public void eliminar(Nodo nodo, int dato) { 
+        if (nodo == null) { 
             return;
-        } else if (nodo.dato == n) { // se mira si el dato del nodo es el que se quiere borrar
-            if (nodo == null && nodo == null) { // si el nodo es una hoja simplemente se elimina
+        } else if (nodo.dato == dato) { 
+            if (nodo == null && nodo == null) { 
                 nodo = null;
                 return;
-            } else if (nodo != null && nodo == null) {// si el nodo solo tiene un hijo izquierdo el nodo se hace igual a ese hijo izquierdo
+            } else if (nodo != null && nodo == null) {
                 nodo = nodo;
                 return;
-            } else if (nodo == null && nodo != null) {// si el nodo solo tiene un hijo derecho el nodo se hace igual a ese hijo derecho
+            } else if (nodo == null && nodo != null) {
                 nodo = nodo;
                 return;
-            } else { // si el nodo tiene dos hijos, como el ultimo elemento de la raiz izquierda siempre es menor al primer de la raiz derecha
-                Nodo a = nodo; // el nodo pasa a ser la raiz izq y se pone esa raiz derecha como hija der de ese mismo nodo
+            } else { 
+                Nodo a = nodo; 
                 nodo = nodo;
                 Nodo aux = nodo;
                 while (true) {
@@ -93,10 +93,10 @@ public class ArbolBinarioBusqueda {
             }
         }
 
-        if (n < nodo.dato) { // recursion si el numero buscado es menor al que esta en el nodo actual se invoca a si mismo con el hijo izq
-            eliminar(nodo, n);
+        if (dato < nodo.dato) { 
+            eliminar(nodo, dato);
         } else {
-            eliminar(nodo, n);// en cambio si es mayor o igual se invoca a si mismo con el hijo der 
+            eliminar(nodo, dato);
         }
     }
 }

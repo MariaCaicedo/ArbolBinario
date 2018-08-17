@@ -71,21 +71,20 @@ public class ArbolBinarioBusqueda {
             if (raiz == null && raiz == null) { 
                 raiz = null;
                 return;
-            } else if (raiz != null && raiz == null) {
+            } else if (raiz != null) {
                 raiz = this.raiz;
                 return;
             } else if (raiz == null && raiz != null) {
-                raiz = this.raiz;
                 return;
             } else { 
-                Nodo a = raiz; 
+                Nodo anterior = raiz; 
                 raiz = this.raiz;
                 Nodo aux = raiz;
                 while (true) {
                     if (raiz == null) {
-                        aux = a;
+                        aux = anterior;
                     } else {
-                        aux = a;
+                        aux = anterior;
                         break;
                     }
                 }

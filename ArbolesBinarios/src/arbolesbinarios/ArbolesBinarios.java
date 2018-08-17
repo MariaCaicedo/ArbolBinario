@@ -7,19 +7,22 @@ package arbolesbinarios;
  */
 
 
-import javax.swing.*;
-
 /**
  * @author sala203
  */
 public class ArbolesBinarios {
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
+        ArbolBinarioBusqueda arbolBinario = new ArbolBinarioBusqueda();
         String menu = "**MENU**" + "\n" + "0. Salir" + "\n" + "11. Mostrar" + "\n" + "22. Insertar" + "\n" + "33. Eliminar";
-        JOptionPane.showInputDialog(menu);
+        int opcionSelecionadaDelMenu = Integer.parseInt(JOptionPane.showInputDialog(menu));
+        switch (opcionSelecionadaDelMenu) {
+            case 0:
+                return;
+            case 11:
+                System.out.println('probando');
+            default:
+                JOptionPane.showMessageDialog(this, 'Opcion no valida o no construida');
+        }
     }
 
 }

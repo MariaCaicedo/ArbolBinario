@@ -24,7 +24,7 @@ public class ArbolBinarioBusqueda {
         }
     }
 
-    public void insertar(char dato) {
+     public void insertar(char dato) {
         Nodo p = this.raiz;
         Nodo anterior = null;
         while (p != null) {

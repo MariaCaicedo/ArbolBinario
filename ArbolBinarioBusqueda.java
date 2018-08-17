@@ -64,38 +64,87 @@ public class ArbolBinarioBusqueda {
         }
     }
 
-    public void eliminar(Nodo raiz, int dato) { 
-        if (raiz == null) { 
-            return;
-        } else if (raiz.dato == dato) { 
-            if (raiz == null && raiz == null) { 
-                raiz = null;
-                return;
-            } else if (raiz != null) {
-                raiz = this.raiz;
-                return;
-            } else if (raiz == null && raiz != null) {
-                return;
-            } else { 
-                Nodo anterior = raiz; 
-                raiz = this.raiz;
-                Nodo aux = raiz;
-                while (true) {
-                    if (raiz == null) {
-                        aux = anterior;
-                    } else {
-                        aux = anterior;
-                        break;
-                    }
+   public void eliminar(int dato){
+            Nodo aux = null, aux1 = null, otro = null;            
+            if (dato < raiz.dato){
+                eliminar(raiz.getDato());
+            }
+            else{
+               if (dato > raiz.dato){
+                    eliminar(raiz.getDato());
                 }
-                return;
+                else{
+                    otro = raiz;
+                   if (otro != null){
+                        if ((otro.getLigaDerecha()== null) && (otro.getLigaIzquierda() == null)){
+                            otro = null;
+                        }
+                        else{
+                            if (otro.getLigaDerecha() == null){
+                                raiz = otro.getLigaIzquierda();
+                            }
+                            else if (otro.getLigaIzquierda()== null){
+                                    raiz= otro.getLigaDerecha(); 
+                                }
+                                else{
+                                    aux = otro.getLigaIzquierda();
+                                    aux1 = aux;
+                                    while (aux.getLigaDerecha() != null){
+                                        aux1 = aux;
+                                        aux = aux.getLigaDerecha();
+                                    }
+                                    otro.dato = aux.dato;
+                                    otro = aux;
+                                    aux = null;
+                                }
+                        }
+                    }
+                    else
+                        System.out.println("DATO NO ENCONTRADO");
+                }
             }
         }
-
-        if (dato < raiz.dato) { 
-            eliminar(raiz, dato);
-        } else {
-            eliminar(raiz, dato);
+    
+    public void buscarNodo(int dato){
+        Nodo aux=raiz;
+        while(aux.dato!=dato){
+            if(dato<aux.dato){
+                aux=aux.getLigaIzquierda();
+            }else{
+                aux=aux.getLigaDerecha();
+            }
+            if(aux==null){
+                return;
+            }
+        }        
+    }
+    
+    public int Contar(Nodo raiz){
+        if(raiz==null)
+         return 0;
+            if(raiz.getLigaDerecha()==null && raiz.getLigaIzquierda()==null)
+            return 1;
+                else
+         return (Contar(raiz.getLigaDerecha())+Contar(raiz.getLigaIzquierda()));
+    }
+    
+    public int cantidad(){
+        if (raiz==null) {
+            return 0;
+        }
+        else {
+            return ( 1+ raiz.getDato() + raiz.getDato());
         }
     }
+    
+    public int altura() {
+        if (raiz==null) {
+            return 0;
+        }
+        else {
+            return (1 + Ma(((raiz.hi).altura()), ((raiz.getDato()));
+        }
+    }
+ 
 }
+   

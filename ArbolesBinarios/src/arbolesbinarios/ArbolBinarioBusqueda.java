@@ -23,7 +23,7 @@ public class ArbolBinarioBusqueda {
             mustraDatoEnInorden(raiz.getLigaIzquierda());
         }
     }
-
+    
      public void insertar(char dato) {
         Nodo p = this.raiz;
         Nodo anterior = null;
@@ -121,13 +121,22 @@ public class ArbolBinarioBusqueda {
         }
     }
     
-    public int altura() {
-        if (raiz==null) {
-            return 0;
-        }
-        else {
-            return;
-        }
+    public int Altura() {
+        int altura = 0;
+        retornarAltura(raiz,1);
+        return altura;
+    }
     
+    private void retornarAltura(Nodo reco, int nivel) {
+        if (reco != null) {
+            retornarAltura(reco.getLigaIzquierda(), nivel + 1);
+            int altura = 0;
+            if (nivel > altura){
+                altura = nivel;
+            }
+            retornarAltura(reco.getLigaDerecha(), nivel + 1);
+        }
+    }
+   
 }
    

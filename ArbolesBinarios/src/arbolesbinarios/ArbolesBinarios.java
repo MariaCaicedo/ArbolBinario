@@ -1,5 +1,7 @@
 package arbolesbinarios;
 
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -19,9 +21,9 @@ public class ArbolesBinarios {
             case 0:
                 return;
             case 11:
-                System.out.println('probando');
+                System.out.println("probando");
             default:
-                JOptionPane.showMessageDialog(this, 'Opcion no valida o no construida');
+                JOptionPane.showMessageDialog(this,'Opcion no valida o no construida',JOptionPane);
         }
     }
 

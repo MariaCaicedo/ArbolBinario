@@ -64,7 +64,7 @@ public class ArbolBinarioBusqueda {
         }
     }
 
-   public void eliminar(int dato){
+   public void eliminar(char dato){
             Nodo aux = null, aux1 = null, otro = null;            
             if (dato < raiz.dato){
                 eliminar(raiz.getDato());
@@ -142,7 +142,7 @@ public class ArbolBinarioBusqueda {
             return 0;
         }
         else {
-            return (1 + Ma(((raiz.hi).altura()), ((raiz.getDato()));
+            return (1 + Math.max((raiz.dato, raiz.dato());
         }
     }
  

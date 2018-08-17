@@ -1,4 +1,4 @@
-/*
+﻿/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -56,38 +56,88 @@ public class ArbolBinarioBusqueda {
         }
     }
 
-    public void eliminar(Nodo nodo, int n) { // recibe el nodo raiz; recibe mas quue el nodo raiz, que es lo otro que recibe y por que? piensalo y corrige el dato que debe recibir.
-        if (nodo == null) {
-            return;
-        } else if (nodo.dato == n) {
-            if (nodo == null && nodo == null) { // si el nodo es una hoja simplemente se elimina; la condicion es redundante, pregunta lo mismo 2 veces, revisa amor.
-                nodo = null;
-                return;
-            } else if (nodo != null && nodo == null) {// si el nodo solo tiene un hijo izquierdo el nodo se hace igual a ese hijo izquierdo; en nigun ligar pregunta por los hijos, revisa que metodos debes llamar de nodo para que el nodo te diga si tiene o no hijos.
-                nodo = nodo;
-                return;
-            } else if (nodo == null && nodo != null) {// si el nodo solo tiene un hijo derecho el nodo se hace igual a ese hijo derecho; el mismo problema de lla condicion anterior.
-                nodo = nodo;
-                return;
-            } else { // si el nodo tiene dos hijos, como el ultimo elemento de la raiz izquierda siempre es menor al primer de la raiz derecha, no logro entender esta perte del codigo amor.
-                Nodo a = nodo; // el nodo pasa a ser la raiz izq y se pone esa raiz derecha como hija der de ese mismo nodo; coloca nombres descriptivos, ¿para que es a?.
-                nodo = nodo; // por quue nodo = nodo?
-                Nodo aux = nodo; // para que es el auxiliar, que vas hacer con el, cambiale el nombre a algo que diga que se va hacer.
-                while (true) {
-                    if (nodo == null) {
-                        aux = a;
-                    } else {
-                        aux = a;
-                        break;
-                    }
+    
+           public void eliminar(char dato){
+            Nodo aux = null, aux1 = null, otro = null;            
+            if (dato < raiz.dato){
+                eliminar(raiz.getDato());
+            }
+            else{
+               if (dato > raiz.dato){
+                    eliminar(raiz.getDato());
                 }
-                return;
+                else{
+                    otro = raiz;
+                   if (otro != null){
+                        if ((otro.getLigaDerecha()== null) && (otro.getLigaIzquierda() == null)){
+                            otro = null;
+                        }
+                        else{
+                            if (otro.getLigaDerecha() == null){
+                                raiz = otro.getLigaIzquierda();
+                            }
+                            else if (otro.getLigaIzquierda()== null){
+                                    raiz= otro.getLigaDerecha(); 
+                                }
+                                else{
+                                    aux = otro.getLigaIzquierda();
+                                    aux1 = aux;
+                                    while (aux.getLigaDerecha() != null){
+                                        aux1 = aux;
+                                        aux = aux.getLigaDerecha();
+                                    }
+                                    otro.dato = aux.dato;
+                                    otro = aux;
+                                    aux = null;
+                                }
+                        }
+                    }
+                    else
+                        System.out.println("DATO NO ENCONTRADO");
+                }
             }
         }
-        if (n < nodo.dato) { // recursion si el numero buscado es menor al que esta en el nodo actual se invoca a si mismo con el hijo izq, creo que ya corregiste lo del numero arriba.
-            eliminar(nodo, n);//creo que ya corregiste lo de llamar a la ligaizquierda o derecha segun el caso
-        } else {
-            eliminar(nodo, n);// en cambio si es mayor o igual se invoca a si mismo con el hijo der 
+    
+    public void buscarNodo(char dato){
+        Nodo aux=raiz;
+        while(aux.dato!=dato){
+            if(dato<aux.dato){
+                aux=aux.getLigaIzquierda();
+            }else{
+                aux=aux.getLigaDerecha();
+            }
+            if(aux==null){
+                return;
+            }
+        }        
+    }
+    
+    public int Contar(Nodo raiz){
+        if(raiz==null)
+         return 0;
+            if(raiz.getLigaDerecha()==null && raiz.getLigaIzquierda()==null)
+            return 1;
+                else
+         return (Contar(raiz.getLigaDerecha())+Contar(raiz.getLigaIzquierda()));
+    }
+    
+    public int cantidad(){
+        if (raiz==null) {
+            return 0;
+        }
+        else {
+            return ( 1+ raiz.getDato() + raiz.getDato());
         }
     }
+    
+    public int altura() {
+        if (raiz==null) {
+            return 0;
+        }
+        else {
+            return;
+        }
+    }
+ 
 }
+   

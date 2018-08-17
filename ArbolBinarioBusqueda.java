@@ -105,7 +105,7 @@ public class ArbolBinarioBusqueda {
             }
         }
     
-    public void buscarNodo(int dato){
+    public void buscarNodo(char dato){
         Nodo aux=raiz;
         while(aux.dato!=dato){
             if(dato<aux.dato){
@@ -142,7 +142,7 @@ public class ArbolBinarioBusqueda {
             return 0;
         }
         else {
-            return (1 + Math.max((raiz.dato, raiz.dato());
+            return;
         }
     }
  

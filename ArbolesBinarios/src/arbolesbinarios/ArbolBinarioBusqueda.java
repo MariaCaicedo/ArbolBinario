@@ -55,39 +55,24 @@ public class ArbolBinarioBusqueda {
         }
     }
 
-    public void eliminar(char dato) {
-        Nodo aux = null, aux1 = null, otro = null;
-        if (dato < raiz.dato) {
-            eliminar(raiz.getDato());
-        } else {
-            if (dato > raiz.dato) {
-                eliminar(raiz.getDato());
-            } else {
-                otro = raiz;
-                if (otro != null) {
-                    if ((otro.getLigaDerecha() == null) && (otro.getLigaIzquierda() == null)) {
-                        otro = null;
-                    } else {
-                        if (otro.getLigaDerecha() == null) {
-                            raiz = otro.getLigaIzquierda();
-                        } else if (otro.getLigaIzquierda() == null) {
-                            raiz = otro.getLigaDerecha();
-                        } else {
-                            aux = otro.getLigaIzquierda();
-                            aux1 = aux;
-                            while (aux.getLigaDerecha() != null) {
-                                aux1 = aux;
-                                aux = aux.getLigaDerecha();
-                            }
-                            otro.dato = aux.dato;
-                            otro = aux;
-                            aux = null;
-                        }
-                    }
-                } else {
-                    System.out.println("DATO NO ENCONTRADO");
+    public void eliminar(Nodo Raiz, char dato) {
+        if (Raiz == null) {
+            return;
+        }
+        Nodo ubicacionActualEnArbol = Raiz;
+        if (dato == ubicacionActualEnArbol.getDato()) {
+            raiz = ubicacionActualEnArbol.getLigaIzquierda();
+            if (ubicacionActualEnArbol == this.raiz) {
+                if (raiz != null) {
+                    raiz.setLigaDerecha(ubicacionActualEnArbol.getLigaDerecha());
                 }
+            } else if (ubicacionActualEnArbol.getLigaDerecha() == null && ubicacionActualEnArbol.getLigaIzquierda() == null) {
+                ubicacionActualEnArbol = null;
             }
+        } else if (dato > ubicacionActualEnArbol.getDato()) {
+            eliminar(ubicacionActualEnArbol.getLigaDerecha(), dato);
+        } else if (dato < ubicacionActualEnArbol.getDato()) {
+            eliminar(ubicacionActualEnArbol.getLigaIzquierda(), dato);
         }
     }
 

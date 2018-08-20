@@ -2,3 +2,5 @@
 *.xml
 *.iml
 /ArbolesBinarios/build/
+*.exec
+*.html

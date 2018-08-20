@@ -90,14 +90,14 @@ public class ArbolBinarioBusqueda {
         }
     }
 
-    public int Contar(Nodo raiz) {
+    public int ContarCantidadDeNodos(Nodo raiz) {
         if (raiz == null) {
             return 0;
         }
         if (raiz.getLigaDerecha() == null && raiz.getLigaIzquierda() == null) {
             return 1;
         } else {
-            return (Contar(raiz.getLigaDerecha()) + Contar(raiz.getLigaIzquierda()));
+            return (ContarCantidadDeNodos(raiz.getLigaDerecha()) + ContarCantidadDeNodos(raiz.getLigaIzquierda()));
         }
     }
 

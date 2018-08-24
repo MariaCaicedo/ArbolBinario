@@ -28,6 +28,14 @@ public class ArbolBinarioBusqueda {
         }
     }
 
+    public void mustraDatoEnPosorden(Nodo raiz){
+         if (raiz != null) {
+            mustraDatoEnPosorden(raiz.getLigaIzquierda());
+            mustraDatoEnPosorden(raiz.getLigaDerecha());
+            System.out.println(raiz.getDato());             
+         }
+    }
+    
     public void insertar(char dato) {
         if (this.raiz == null) {
             raiz = new Nodo(dato);
@@ -111,19 +119,19 @@ public class ArbolBinarioBusqueda {
 
     public int Altura() {
         int altura = 0;
-        retornarAltura(raiz, 1);
+        Altura(raiz, 1);
         return altura;
     }
 
-    private void retornarAltura(Nodo reco, int nivel) {
-        if (reco != null) {
-            retornarAltura(reco.getLigaIzquierda(), nivel + 1);
+    private void Altura(Nodo recorer, int nivel) {
+        if (recorer != null) {
+            Altura(recorer.getLigaIzquierda(), nivel + 1);
             int altura = 0;
             if (nivel > altura) {
                 altura = nivel;
             }
-            retornarAltura(reco.getLigaDerecha(), nivel + 1);
+            Altura(recorer.getLigaDerecha(), nivel + 1);
         }
     }
-
+       
 }

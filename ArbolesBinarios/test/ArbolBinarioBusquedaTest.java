@@ -128,7 +128,7 @@ public class ArbolBinarioBusquedaTest {
      }
      
      @Test
-     public void DebeEncontrarNodoEnArbolConDatos(){
+     public void debeEncontrarNodoEnArbolConDatos(){
          arbolBinario.insertar('1');
          arbolBinario.insertar('2');
          arbolBinario.insertar('3');
@@ -137,5 +137,54 @@ public class ArbolBinarioBusquedaTest {
          Nodo respuestaDeBusqueda = arbolBinario.buscarNodo('3');
          
          Assert.assertEquals("Se esperaba encontrar el nodo con el char 3",'3',respuestaDeBusqueda.getDato());         
+     }
+     
+     @Test
+     public void noDebeEliminarNingunDatoDelArbolVacio(){
+         arbolBinario.eliminar(arbolBinario.retornarRaiz(), '5');
+     }
+     
+     @Test
+     public void debeEliminarElUnicoDatoDelArbol(){
+         Nodo primero = arbolBinario.insertar('5');
+         arbolBinario.eliminar(primero, '5');
+         Assert.assertNull(arbolBinario.retornarRaiz());
+     }
+     
+     @Test
+     public void noDebeEliminarUnDatoQueNoExisteEnElArbol(){
+         Nodo primero = arbolBinario.insertar('5');
+         Nodo segundo = arbolBinario.insertar('2');         
+         Nodo tercero = arbolBinario.insertar('8');
+         arbolBinario.eliminar(primero, '1');
+     }
+     
+     @Test
+     public void debeEliminarElUnicoHijoDerecho(){
+         Nodo primero = arbolBinario.insertar('5');
+         Nodo segundo = arbolBinario.insertar('2');         
+         Nodo tercero = arbolBinario.insertar('8');
+         arbolBinario.eliminar(primero, '8');
+         Assert.assertNull("Se esperaba que el Nodo con el char 8 no exista", arbolBinario.buscarNodo('8'));
+     }
+     
+     @Test
+     public void debeEliminarElUnicoHijoIzquierdo(){
+         Nodo primero = arbolBinario.insertar('5');
+         Nodo segundo = arbolBinario.insertar('2');         
+         Nodo tercero = arbolBinario.insertar('8');
+         arbolBinario.eliminar(primero, '2');
+         Assert.assertNull("Se espera que el Nodo con el caracter 2 no exista", arbolBinario.buscarNodo('2'));
+     }
+     
+     @Test
+     public void debeEliminarLaRaizCuandoTieneHijos(){
+         Nodo primero = arbolBinario.insertar('5');
+         Nodo segundo = arbolBinario.insertar('2');         
+         Nodo tercero = arbolBinario.insertar('8');
+         arbolBinario.eliminar(primero, '5');
+         Assert.assertNull("Se espera que el Nodo con el caracter 5 no exista", arbolBinario.buscarNodo('5')); 
+         Assert.assertNotNull("Se espera que el Nodo con el caracter 2 exista", arbolBinario.buscarNodo('2'));
+         Assert.assertNotNull("Se espera que el Nodo con el caracter 8 exista", arbolBinario.buscarNodo('8'));
      }
 }

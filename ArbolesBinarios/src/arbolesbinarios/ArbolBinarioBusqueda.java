@@ -40,37 +40,31 @@ public class ArbolBinarioBusqueda {
         if (this.raiz == null) {
             return insertarEnRaiz(dato);
         }
-        else if (this.buscarNodo(dato).getDato() == dato) {
+        Nodo buscarSiExiste = this.buscarNodo(dato);
+        if (buscarSiExiste!= null) {
             System.out.println("EL DATO YA EXISTE");
-            return this.buscarNodo(dato);
+            return buscarSiExiste;
         }
-        else{
-            Nodo nodoParaRecorrerElArbol = this.raiz;
-            Nodo anterior = null;
-            while (nodoParaRecorrerElArbol != null) {
-                if (nodoParaRecorrerElArbol.getDato() < dato) {
-                    anterior = nodoParaRecorrerElArbol;
-                    nodoParaRecorrerElArbol = nodoParaRecorrerElArbol.getLigaDerecha();
-                } else {
-                    anterior = nodoParaRecorrerElArbol;
-                    nodoParaRecorrerElArbol = nodoParaRecorrerElArbol.getLigaIzquierda();
-                }
-            }
-            Nodo nuevoDato = new Nodo(dato);
-            if(anterior == null){
-                anterior = nodoParaRecorrerElArbol;
-            }
-            else if (anterior.getLigaIzquierda() == null) {
-                anterior.setLigaIzquierda(nuevoDato);
-            } else {
-                anterior.setLigaDerecha(nuevoDato);
-            }
-            return anterior;
-        }
+        return this.buscarDondeEInsertarDato(this.raiz,dato);
    }
     
     private Nodo insertarEnRaiz(char dato){
         return raiz = new Nodo(dato);
+    }
+    
+    private Nodo buscarDondeEInsertarDato(Nodo raiz,char dato){
+        if(raiz.getDato() < dato){
+            if(raiz.getLigaDerecha()!=null)
+                raiz = buscarDondeEInsertarDato(raiz.getLigaDerecha(), dato);
+            else
+                raiz.setLigaDerecha(new Nodo(dato));
+        }else if(raiz.getDato() > dato){
+            if(raiz.getLigaIzquierda()!=null)
+                raiz = buscarDondeEInsertarDato(raiz.getLigaIzquierda(), dato);
+            else
+                raiz.setLigaIzquierda(new Nodo(dato));
+        }
+        return raiz;
     }
     
     public void eliminar(Nodo Raiz, char dato) {

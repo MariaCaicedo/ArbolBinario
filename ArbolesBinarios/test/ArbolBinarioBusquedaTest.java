@@ -68,10 +68,39 @@ public class ArbolBinarioBusquedaTest {
      @Test
      public void debeInsertarAlLadoDerechoDelArbol(){
          Nodo primerDato = arbolBinario.insertar('5');
+         Nodo segundoDato = arbolBinario.insertar('9');
+         
+         Assert.assertNotNull("Se espera que la liga derecha de la raiz no sea null", arbolBinario.retornarRaiz().getLigaDerecha());
+     }
+     
+     @Test
+     public void debeInsertatAlLadoIzquierdoDelArbol(){
+         
+         Nodo primerDato = arbolBinario.insertar('5');
          Nodo segundoDato = arbolBinario.insertar('1');
          
          Assert.assertNotNull("Se espera que la liga derecha de la raiz no sea null", arbolBinario.retornarRaiz().getLigaIzquierda());
      }
+     
+     @Test
+     public void debeInsertar3NivelesEnElOrden5423DebeQuedarIzquierdoIzquierdoDerecho(){
+         Nodo primerNodo = arbolBinario.insertar('5');
+         Nodo segundoNodo = arbolBinario.insertar('4');
+         Nodo tercerNodo = arbolBinario.insertar('2');
+         Nodo cuartoNodo = arbolBinario.insertar('3');
+         Assert.assertEquals("liga derecha de la liga izquierda de liga izquierda de la raiz sea el cuarto nodo insertado", '3', 
+                 arbolBinario.retornarRaiz().getLigaIzquierda().getLigaIzquierda().getLigaDerecha().getDato());
+     }
+     
+     @Test
+     public void debeInsertar3NivelesEnElOrden5687DebeQuedarDerechoDerechoIzquierdo(){
+         Nodo primerNodo = arbolBinario.insertar('5');
+         Nodo segundoNodo = arbolBinario.insertar('6');
+         Nodo tercerNodo = arbolBinario.insertar('8');
+         Nodo cuartoNodo = arbolBinario.insertar('7');
+         Assert.assertEquals("liga izquierda de liga derecha de liga derecha de la raiz sea el cuarto nodo insertado", '7', 
+                 arbolBinario.retornarRaiz().getLigaDerecha().getLigaDerecha().getLigaIzquierda().getDato());
+         }
      
      @Test
      public void debeBuscarUnNodoQueEstaEnLaRaizDelArbol(){

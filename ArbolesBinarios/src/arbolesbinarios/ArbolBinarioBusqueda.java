@@ -36,33 +36,43 @@ public class ArbolBinarioBusqueda {
          }
     }
     
-    public void insertar(char dato) {
+    public Nodo insertar(char dato) {
         if (this.raiz == null) {
-            raiz = new Nodo(dato);
-            return;
+            return insertarEnRaiz(dato);
         }
-        Nodo p = this.raiz;
-        Nodo anterior = null;
-        while (p != null) {
-            if (p.getDato() == dato) {
-                System.out.println("EL DATO YA EXISTE");
-                return;
-            } else if (p.getDato() < dato) {
-                anterior = p;
-                p = p.getLigaDerecha();
-            } else if (p.getDato() > dato) {
-                anterior = p;
-                p = p.getLigaIzquierda();
+        else if (this.buscarNodo(dato).getDato() == dato) {
+            System.out.println("EL DATO YA EXISTE");
+            return this.buscarNodo(dato);
+        }
+        else{
+            Nodo nodoParaRecorrerElArbol = this.raiz;
+            Nodo anterior = null;
+            while (nodoParaRecorrerElArbol != null) {
+                if (nodoParaRecorrerElArbol.getDato() < dato) {
+                    anterior = nodoParaRecorrerElArbol;
+                    nodoParaRecorrerElArbol = nodoParaRecorrerElArbol.getLigaDerecha();
+                } else {
+                    anterior = nodoParaRecorrerElArbol;
+                    nodoParaRecorrerElArbol = nodoParaRecorrerElArbol.getLigaIzquierda();
+                }
             }
+            Nodo nuevoDato = new Nodo(dato);
+            if(anterior == null){
+                anterior = nodoParaRecorrerElArbol;
+            }
+            else if (anterior.getLigaIzquierda() == null) {
+                anterior.setLigaIzquierda(nuevoDato);
+            } else {
+                anterior.setLigaDerecha(nuevoDato);
+            }
+            return anterior;
         }
-        Nodo nuevoDato = new Nodo(dato);
-        if (anterior.getLigaIzquierda() == null) {
-            anterior.setLigaIzquierda(nuevoDato);
-        } else {
-            anterior.setLigaDerecha(nuevoDato);
-        }
+   }
+    
+    private Nodo insertarEnRaiz(char dato){
+        return raiz = new Nodo(dato);
     }
-
+    
     public void eliminar(Nodo Raiz, char dato) {
         if (Raiz == null) {
             return;
@@ -84,21 +94,34 @@ public class ArbolBinarioBusqueda {
         }
     }
 
-    public void buscarNodo(char dato) {
+    public Nodo buscarNodo(char dato) {
         Nodo aux = raiz;
-        while (aux.dato != dato) {
-            if (dato < aux.dato) {
+        while (aux!=null) {
+            if(aux.dato == dato){
+                return aux;
+            }
+            else if (dato < aux.dato) {
                 aux = aux.getLigaIzquierda();
             } else {
                 aux = aux.getLigaDerecha();
             }
-            if (aux == null) {
-                return;
-            }
         }
+        return aux;
     }
 
     public int ContarCantidadDeNodos(Nodo raiz) {
+        int cantidadNodos = 0;
+        if (raiz != null) {
+            cantidadNodos++;
+        }
+        if (raiz !=null && (raiz.getLigaDerecha() != null || raiz.getLigaIzquierda() != null)) {
+            cantidadNodos += ContarCantidadDeNodos(raiz.getLigaDerecha());
+            cantidadNodos += ContarCantidadDeNodos(raiz.getLigaIzquierda());   
+        }
+        return cantidadNodos;
+    }
+    
+    public int ContarCantidadDeHojas(Nodo raiz) {
         if (raiz == null) {
             return 0;
         }

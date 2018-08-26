@@ -13,15 +13,16 @@ package arbolesbinarios;
  */
 public class Nodo {
 
-    char dato;
+    private char dato;
     private Nodo ligaDerecha;
     private Nodo ligaIzquierda;
+    private Nodo padre;
 
-    public Nodo(char dato) {
+    public Nodo(char dato,Nodo padre) {
         this.dato = dato;
         this.ligaDerecha = null;
         this.ligaIzquierda = null;
-
+        this.padre = padre;
     }
 
     public char getDato() {
@@ -48,4 +49,13 @@ public class Nodo {
         this.ligaIzquierda = ligaIzquierda;
     }
 
+    public Nodo getPadre() {
+        return padre;
+    }
+
+    public void setPadre(Nodo padre) {
+        this.padre = padre;
+    }
+    
+    
 }

@@ -35,7 +35,7 @@ public class ArbolesBinarios {
                 case 33:
                     String datoAEliminar = JOptionPane.showInputDialog(null, "Debe ingresar el caracter a eliminar", "Eliminar Caracter", JOptionPane.DEFAULT_OPTION);
                     datoObtenido = datoAEliminar.charAt(0);
-                    arbolBinario.eliminar(arbolBinario.retornarRaiz(), datoObtenido);
+                    arbolBinario.eliminar(datoObtenido);
                     System.out.println("Dato Eliminado");
                     break;
                 default:

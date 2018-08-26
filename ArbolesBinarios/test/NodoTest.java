@@ -18,20 +18,22 @@ public class NodoTest {
     @org.junit.Test
     public void debeObtenerElDatoDelNodoAVerificarQueEsElCharJ() {
         //Arrange and action
-        Nodo nodoPrueba = new Nodo('J');
+        Nodo nodoPrueba = new Nodo('J', null);
 
         //assert
         Assert.assertEquals('J', nodoPrueba.getDato());
     }
+
     @Test
     public void debeObtenerLaLigaDerechaQueDebeSerNull() {
-        Nodo nodoPrueba = new Nodo('j');
+        Nodo nodoPrueba = new Nodo('j', null);
         Assert.assertNull(nodoPrueba.getLigaDerecha());
     }
+
     @Test
     public void debeColocarElDatoDelNodoQueEsElCharA() {
         //arrange
-        Nodo nodoPrueba = new Nodo('u');
+        Nodo nodoPrueba = new Nodo('u', null);
 
         //action
         nodoPrueba.setDato('A');

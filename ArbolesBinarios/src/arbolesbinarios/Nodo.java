@@ -5,28 +5,30 @@ package arbolesbinarios;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
 /**
  *
  * @author sala203
  */
 public class Nodo {
 
-    private char dato;
+    private Estudiante estudiante;
     private Nodo ligaDerecha;
     private Nodo ligaIzquierda;
     private Nodo padre;
 
-    public Nodo(char dato,Nodo padre) {
-        this.dato = dato;
+    public Nodo(Estudiante estudiante, Nodo padre) {
+        this.estudiante = estudiante;
         this.ligaDerecha = null;
         this.ligaIzquierda = null;
         this.padre = padre;
     }
 
-    public char getDato() {
-        return dato;
+    public Estudiante getEstudiante() {
+        return estudiante;
+    }
+
+    public void setEstudiante(Estudiante estudiante) {
+        this.estudiante = estudiante;
     }
 
     public Nodo getLigaDerecha() {
@@ -35,10 +37,6 @@ public class Nodo {
 
     public Nodo getLigaIzquierda() {
         return ligaIzquierda;
-    }
-
-    public void setDato(char dato) {
-        this.dato = dato;
     }
 
     public void setLigaDerecha(Nodo ligaDerecha) {
@@ -56,6 +54,5 @@ public class Nodo {
     public void setPadre(Nodo padre) {
         this.padre = padre;
     }
-    
-    
+
 }

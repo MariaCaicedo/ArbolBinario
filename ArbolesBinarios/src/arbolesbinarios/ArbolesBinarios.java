@@ -15,7 +15,7 @@ public class ArbolesBinarios {
     public static void main(String[] args) {
         ArbolBinarioBusqueda arbolBinario = new ArbolBinarioBusqueda();
         String menu = "**MENU**" + "\n" + "0. Salir" + "\n" + "11. Mostrar" + "\n" + "22. Insertar" + "\n" + "33. Eliminar";
-        char datoObtenido;
+        String datoObtenido;
         while (true) {
             int opcionSelecionadaDelMenu = Integer.parseInt(JOptionPane.showInputDialog(null, menu, "MENU", JOptionPane.DEFAULT_OPTION));
             switch (opcionSelecionadaDelMenu) {
@@ -28,13 +28,14 @@ public class ArbolesBinarios {
                     break;
                 case 22:
                     String datoAInsertar = JOptionPane.showInputDialog(null, "Debe ingresar un solo caracter", "Ingrese Dato", JOptionPane.DEFAULT_OPTION);
-                    datoObtenido = datoAInsertar.charAt(0);
-                    arbolBinario.insertar(datoObtenido);
+                    datoObtenido = datoAInsertar;
+                    Estudiante estudiante = new Estudiante(datoObtenido, "", "", 0);
+                    arbolBinario.insertar(estudiante);
                     System.out.println("Dato Insertado");
                     break;
                 case 33:
                     String datoAEliminar = JOptionPane.showInputDialog(null, "Debe ingresar el caracter a eliminar", "Eliminar Caracter", JOptionPane.DEFAULT_OPTION);
-                    datoObtenido = datoAEliminar.charAt(0);
+                    datoObtenido = datoAEliminar;
                     arbolBinario.eliminar(datoObtenido);
                     System.out.println("Dato Eliminado");
                     break;

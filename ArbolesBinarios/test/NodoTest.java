@@ -1,4 +1,5 @@
 
+import arbolesbinarios.Estudiante;
 import arbolesbinarios.Nodo;
 import org.junit.Assert;
 import org.junit.Test;
@@ -15,30 +16,33 @@ import org.junit.Test;
  */
 public class NodoTest {
 
+    Estudiante estudiante = new Estudiante("1040", "wilmar", "calle 1", 20);
+
     @org.junit.Test
     public void debeObtenerElDatoDelNodoAVerificarQueEsElCharJ() {
         //Arrange and action
-        Nodo nodoPrueba = new Nodo('J', null);
+        Nodo nodoPrueba = new Nodo(estudiante, null);
 
         //assert
-        Assert.assertEquals('J', nodoPrueba.getDato());
+        Assert.assertEquals("1040", nodoPrueba.getEstudiante().getCedula());
     }
 
     @Test
     public void debeObtenerLaLigaDerechaQueDebeSerNull() {
-        Nodo nodoPrueba = new Nodo('j', null);
+        Nodo nodoPrueba = new Nodo(estudiante, null);
         Assert.assertNull(nodoPrueba.getLigaDerecha());
     }
 
     @Test
     public void debeColocarElDatoDelNodoQueEsElCharA() {
         //arrange
-        Nodo nodoPrueba = new Nodo('u', null);
+        Nodo nodoPrueba = new Nodo(estudiante, null);
 
         //action
-        nodoPrueba.setDato('A');
+        Estudiante nuevo = new Estudiante("1", "nuevo", "nuevo", 20);
+        nodoPrueba.setEstudiante(nuevo);
 
         //assert
-        Assert.assertEquals('A', nodoPrueba.getDato());
+        Assert.assertEquals("nuevo", nodoPrueba.getEstudiante().getNombre());
     }
 }

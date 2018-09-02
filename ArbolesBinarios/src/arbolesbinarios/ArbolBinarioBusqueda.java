@@ -42,7 +42,7 @@ public class ArbolBinarioBusqueda {
         }
         Nodo buscarSiExiste = this.buscarEstudianteConCedula(estudiante.getCedula());
         if (buscarSiExiste != null) {
-            System.out.println("EL DATO YA EXISTE");
+            System.out.println("EL ESTUDIANTE CON CEDULA " + estudiante.getCedula() + " YA EXISTE");
             return buscarSiExiste;
         }
         return this.buscarDondeEInsertarDato(this.raiz, estudiante);
@@ -66,6 +66,7 @@ public class ArbolBinarioBusqueda {
                 raiz.setLigaIzquierda(new Nodo(estudiante, raiz));
             }
         }
+        this.raiz = this.balancearArbol(this.raiz);
         return raiz;
     }
 
@@ -154,6 +155,7 @@ public class ArbolBinarioBusqueda {
             } else if (!hijoMasIzquierdo.getPadre().equals(this.raiz)) {
                 hijoMasIzquierdo.getPadre().setLigaIzquierda(null);
             }
+            this.raiz = this.balancearArbol(this.raiz);
             return true;
         } else {
             Nodo hijoMasIzquierdo = obtenerNodoMasIzquierdo(padre.getLigaDerecha());
@@ -164,6 +166,7 @@ public class ArbolBinarioBusqueda {
             } else if (!hijoMasIzquierdo.getPadre().equals(padre)) {
                 hijoMasIzquierdo.getPadre().setLigaIzquierda(null);
             }
+            this.raiz = this.balancearArbol(this.raiz);
             return true;
         }
     }
@@ -172,14 +175,14 @@ public class ArbolBinarioBusqueda {
         return nodo.getLigaIzquierda() == null ? nodo : obtenerNodoMasIzquierdo(nodo);
     }
 
-    public int ContarCantidadDeNodos(Nodo raiz) {
+    public int contarCantidadDeNodos(Nodo raiz) {
         int cantidadNodos = 0;
         if (raiz != null) {
             cantidadNodos++;
         }
         if (raiz != null && (raiz.getLigaDerecha() != null || raiz.getLigaIzquierda() != null)) {
-            cantidadNodos += ContarCantidadDeNodos(raiz.getLigaDerecha());
-            cantidadNodos += ContarCantidadDeNodos(raiz.getLigaIzquierda());
+            cantidadNodos += contarCantidadDeNodos(raiz.getLigaDerecha());
+            cantidadNodos += contarCantidadDeNodos(raiz.getLigaIzquierda());
         }
         return cantidadNodos;
     }
@@ -191,7 +194,7 @@ public class ArbolBinarioBusqueda {
         if (raiz.getLigaDerecha() == null && raiz.getLigaIzquierda() == null) {
             return 1;
         } else {
-            return (ContarCantidadDeNodos(raiz.getLigaDerecha()) + ContarCantidadDeNodos(raiz.getLigaIzquierda()));
+            return (contarCantidadDeNodos(raiz.getLigaDerecha()) + contarCantidadDeNodos(raiz.getLigaIzquierda()));
         }
     }
 
@@ -204,26 +207,26 @@ public class ArbolBinarioBusqueda {
     }
 
     public int Altura() {
-        int altura = 0;
-        Altura(raiz, 1);
-        return altura;
+        return Altura(raiz, 1);
     }
 
-    private void Altura(Nodo recorer, int nivel) {
+    private int Altura(Nodo recorer, int nivel) {
+        int altura = 0;
         if (recorer != null) {
-            Altura(recorer.getLigaIzquierda(), nivel + 1);
-            int altura = 0;
-            if (nivel > altura) {
+            if (recorer.getLigaIzquierda() != null)
+                altura = Altura(recorer.getLigaIzquierda(), nivel + 1);
+            if (recorer.getLigaDerecha() != null)
+                altura = Altura(recorer.getLigaDerecha(), nivel + 1);
+            if (nivel > altura)
                 altura = nivel;
-            }
-            Altura(recorer.getLigaDerecha(), nivel + 1);
         }
+        return altura;
     }
 
     public Nodo buscarEstudianteConCedula(String cedula) {
         Nodo aux = this.raiz;
         while (aux != null) {
-            if (aux.getEstudiante().getCedula().compareTo(cedula) < 0) {
+            if (aux.getEstudiante().getCedula().compareTo(cedula) == 0) {
                 return aux;
             } else if (0 < aux.getEstudiante().getCedula().compareTo(cedula)) {
                 aux = aux.getLigaIzquierda();
@@ -234,4 +237,62 @@ public class ArbolBinarioBusqueda {
         return aux;
     }
 
+    public int factorDeValance(Nodo raiz) {
+        return Altura(raiz.getLigaIzquierda(), 0) - Altura(raiz.getLigaDerecha(), 0);
+    }
+
+    public Nodo balancearArbol(Nodo raiz) {
+        int factorDeBalance = this.factorDeValance(raiz);
+        if (factorDeBalance == 2) {
+            Nodo q = raiz.getLigaIzquierda();
+            int factorDeBalanceDeQ = this.factorDeValance(q);
+            if (factorDeBalanceDeQ == 1) {
+                raiz = unaRotacionALaDerecha(raiz, q);
+            }
+            if (factorDeBalanceDeQ == -1) {
+                raiz = dobleRotacionALaDerecha(raiz, q);
+            }
+        }
+        if (factorDeBalance == -2) {
+            Nodo q = raiz.getLigaDerecha();
+            int factorDeBalanceDeQ = this.factorDeValance(q);
+            if (factorDeBalanceDeQ == -1) {
+                raiz = unaRotacionaLaIzquierda(raiz, q);
+            }
+            if (factorDeBalanceDeQ == 1) {
+                raiz = dobleRotacionALaIzquierda(raiz, q);
+            }
+        }
+        return raiz;
+    }
+
+    public Nodo unaRotacionALaDerecha(Nodo p, Nodo q) {
+        p.setLigaIzquierda(q.getLigaDerecha());
+        q.setLigaDerecha(p);
+        return q;
+    }
+
+    public Nodo dobleRotacionALaDerecha(Nodo p, Nodo q) {
+        Nodo r = q.getLigaDerecha();
+        q.setLigaDerecha(q.getLigaIzquierda());
+        r.setLigaIzquierda(q);
+        p.setLigaIzquierda(r.getLigaDerecha());
+        r.setLigaDerecha(p);
+        return r;
+    }
+
+    public Nodo unaRotacionaLaIzquierda(Nodo p, Nodo q) {
+        p.setLigaDerecha(q.getLigaIzquierda());
+        q.setLigaIzquierda(p);
+        return q;
+    }
+
+    public Nodo dobleRotacionALaIzquierda(Nodo p, Nodo q) {
+        Nodo r = q.getLigaIzquierda();
+        q.setLigaIzquierda(r.getLigaDerecha());
+        r.setLigaDerecha(q);
+        p.setLigaDerecha(r.getLigaIzquierda());
+        r.setLigaIzquierda(p);
+        return r;
+    }
 }

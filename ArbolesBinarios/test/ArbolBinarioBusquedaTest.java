@@ -11,8 +11,8 @@ import org.junit.Test;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 /**
- *
  * @author ASUS
  */
 public class ArbolBinarioBusquedaTest {
@@ -32,7 +32,7 @@ public class ArbolBinarioBusquedaTest {
         arbolBinario.insertar(estudiante);
 
         //action
-        int cantNodos = arbolBinario.ContarCantidadDeNodos(arbolBinario.retornarRaiz());
+        int cantNodos = arbolBinario.contarCantidadDeNodos(arbolBinario.retornarRaiz());
 
         //asert
         Assert.assertEquals(1, cantNodos);
@@ -41,7 +41,7 @@ public class ArbolBinarioBusquedaTest {
     @Test
     public void contarCantidadDeNodos0() {
         //action
-        int cantNodos = arbolBinario.ContarCantidadDeNodos(arbolBinario.retornarRaiz());
+        int cantNodos = arbolBinario.contarCantidadDeNodos(arbolBinario.retornarRaiz());
 
         //asert
         Assert.assertEquals(0, cantNodos);
@@ -50,19 +50,20 @@ public class ArbolBinarioBusquedaTest {
     @Test
     public void contarCantidadDeNodos5() {
         //arrage
+        ArbolBinarioBusqueda arbolBinarioContar = new ArbolBinarioBusqueda();
         Estudiante nuevo = new Estudiante("1", "juan", "calle", 20);
-        arbolBinario.insertar(nuevo);
+        arbolBinarioContar.insertar(nuevo);
         Estudiante nuevo1 = new Estudiante("2", "andre", "calle", 20);
-        arbolBinario.insertar(nuevo);
+        arbolBinarioContar.insertar(nuevo1);
         Estudiante nuevo2 = new Estudiante("3", "felipe", "calle", 20);
-        arbolBinario.insertar(nuevo2);
+        arbolBinarioContar.insertar(nuevo2);
         Estudiante nuevo3 = new Estudiante("4", "juan", "calle", 20);
-        arbolBinario.insertar(nuevo3);
+        arbolBinarioContar.insertar(nuevo3);
         Estudiante nuevo4 = new Estudiante("5", "calvito", "calle", 20);
-        arbolBinario.insertar(nuevo4);
+        arbolBinarioContar.insertar(nuevo4);
 
         //action
-        int cantNodos = arbolBinario.ContarCantidadDeNodos(arbolBinario.retornarRaiz());
+        int cantNodos = arbolBinarioContar.contarCantidadDeNodos(arbolBinarioContar.retornarRaiz());
 
         //asert
         Assert.assertEquals(5, cantNodos);
@@ -100,32 +101,32 @@ public class ArbolBinarioBusquedaTest {
     @Test
     public void debeInsertar3NivelesEnElOrden5423DebeQuedarIzquierdoIzquierdoDerecho() {
         Estudiante estudiante1 = new Estudiante("1", "juan", "calle", 20);
-        Nodo primerNodo = arbolBinario.insertar(estudiante1.setCedula("5"));
+        Nodo primerNodo = arbolBinario.insertar(estudiante1.setCedula("14"));
         Estudiante estudiante2 = new Estudiante("2", "juan", "calle", 20);
-        Nodo segundoNodo = arbolBinario.insertar(estudiante2.setCedula("4"));
+        Nodo segundoNodo = arbolBinario.insertar(estudiante2.setCedula("6"));
         Estudiante estudiante3 = new Estudiante("3", "juan", "calle", 20);
-        Nodo tercerNodo = arbolBinario.insertar(estudiante3.setCedula("2"));
+        Nodo tercerNodo = arbolBinario.insertar(estudiante3.setCedula("24"));
         Estudiante estudiante4 = new Estudiante("4", "juan", "calle", 20);
-        Nodo cuartoNodo = arbolBinario.insertar(estudiante4.setCedula("3"));
-        arbolBinario.mustraDatoEnInorden(arbolBinario.retornarRaiz());
-        Assert.assertEquals("liga derecha de la liga izquierda de liga izquierda de la raiz sea el cuarto nodo insertado", '3',
-                arbolBinario.retornarRaiz().getLigaIzquierda().getLigaIzquierda().getLigaDerecha().getEstudiante().getCedula());
+        Nodo cuartoNodo = arbolBinario.insertar(estudiante4.setCedula("15"));
+        Estudiante estudiante6 = new Estudiante("2", "juan", "calle", 20);
+        Nodo sextoNodo = arbolBinario.insertar(estudiante6.setCedula("16"));
+        Assert.assertEquals("liga derecha de la liga izquierda de liga izquierda de la raiz sea el cuarto nodo insertado", "16",
+                arbolBinario.retornarRaiz().getLigaDerecha().getLigaIzquierda().getEstudiante().getCedula());
     }
 
     @Test
-    public void debeInsertar3NivelesEnElOrden5687DebeQuedarDerechoDerechoIzquierdo() {
+    public void debeInsertar3NivelesEnElOrden161316DebeQuedarDerechoDerechoIzquierdo() {
         Estudiante estudiante1 = new Estudiante("1", "juan", "calle", 20);
-        Nodo primerNodo = arbolBinario.insertar(estudiante1.setCedula("5"));
-        Estudiante estudiante2 = new Estudiante("1", "juan", "calle", 20);
-        Nodo segundoNodo = arbolBinario.insertar(estudiante2.setCedula("6"));
-        Estudiante estudiante3 = new Estudiante("1", "juan", "calle", 20);
-        Nodo tercerNodo = arbolBinario.insertar(estudiante3.setCedula("8"));
-        Estudiante estudiante4 = new Estudiante("1", "juan", "calle", 20);
-        Nodo cuartoNodo = arbolBinario.insertar(estudiante4.setCedula("7"));
+        Nodo primerNodo = arbolBinario.insertar(estudiante1.setCedula("6"));
+        Estudiante estudiante2 = new Estudiante("2", "juan", "calle", 20);
+        Nodo segundoNodo = arbolBinario.insertar(estudiante2.setCedula("16"));
+        Estudiante estudiante3 = new Estudiante("3", "juan", "calle", 20);
+        Nodo tercerNodo = arbolBinario.insertar(estudiante3.setCedula("13"));
+        Estudiante estudiante4 = new Estudiante("4", "juan", "calle", 20);
+        Nodo cuartoNodo = arbolBinario.insertar(estudiante4.setCedula("1"));
 
-        arbolBinario.mustraDatoEnInorden(arbolBinario.retornarRaiz());
-        Assert.assertEquals("liga izquierda de liga derecha de liga derecha de la raiz sea el cuarto nodo insertado", '7',
-                arbolBinario.retornarRaiz().getLigaDerecha().getLigaDerecha().getLigaIzquierda().getEstudiante().getCedula());
+        Assert.assertEquals("liga izquierda de liga derecha de liga derecha de la raiz sea el cuarto nodo insertado", "1",
+                arbolBinario.retornarRaiz().getLigaIzquierda().getLigaIzquierda().getEstudiante().getCedula());
     }
 
     @Test
@@ -256,5 +257,72 @@ public class ArbolBinarioBusquedaTest {
         Assert.assertTrue("se esperaba que el nodo fuera eliminado", response);
         Assert.assertFalse("Se esperaba que el Estudiante con cedula '6' no exista", arbolBinario.buscarEstudianteConCedula("6") != null);
         Assert.assertTrue("Se esperaba que el Estudiante con cedula '19' exista", arbolBinario.buscarEstudianteConCedula("19") != null);
+    }
+
+    @Test
+    public void altura0() {
+        int altura = arbolBinario.Altura();
+        Assert.assertEquals("se esperaba que la altura sea 0", 0, altura);
+    }
+
+    @Test
+    public void altura1() {
+        arbolBinario.insertar(estudiante);
+
+        int altura1 = arbolBinario.Altura();
+
+        Assert.assertEquals("se esperaba que la altura fuese 1", 1, altura1);
+    }
+
+    @Test
+    public void altura3() {
+        arbolBinario.insertar(estudiante.setCedula("6"));
+        Estudiante nuevo = new Estudiante("1", "", "", 12);
+        arbolBinario.insertar(nuevo);
+        Estudiante nuevo1 = new Estudiante("5", "", "", 42);
+        arbolBinario.insertar(nuevo1);
+
+        int altura3 = arbolBinario.Altura();
+
+        Assert.assertEquals("se esperaba que la altura fuese 3", 3, altura3);
+    }
+
+    @Test
+    public void calecule0() {
+        arbolBinario.insertar(estudiante);
+
+        int valance = arbolBinario.factorDeValance(arbolBinario.retornarRaiz());
+
+        Assert.assertEquals("se esperaba que el factor de valance sea 0", 0, valance);
+    }
+
+    @Test
+    public void calculeMas1() {
+        arbolBinario.insertar(estudiante.setCedula("80"));
+        Estudiante nuevo = new Estudiante("70", "", "", 25);
+        arbolBinario.insertar(nuevo);
+        Estudiante nuevo1 = new Estudiante("90", "", "", 25);
+        arbolBinario.insertar(nuevo1);
+        Estudiante nuevo2 = new Estudiante("60", "", "", 20);
+        arbolBinario.insertar(nuevo2);
+
+        int valance = arbolBinario.factorDeValance(arbolBinario.retornarRaiz());
+
+        Assert.assertEquals("se esperaba que el factor de valance sea mas1", +1, valance);
+    }
+
+    @Test
+    public void calculaMenos1() {
+        arbolBinario.insertar(estudiante.setCedula("80"));
+        Estudiante nuevo = new Estudiante("95", "", "", 25);
+        arbolBinario.insertar(nuevo);
+        Estudiante nuevo1 = new Estudiante("81", "", "", 25);
+        arbolBinario.insertar(nuevo1);
+        Estudiante nuevo3 = new Estudiante("61", "", "", 25);
+        arbolBinario.insertar(nuevo3);
+
+        int valance = arbolBinario.factorDeValance(arbolBinario.retornarRaiz());
+
+        Assert.assertEquals("se esperaba que el factor de valance sea -1", -1, valance);
     }
 }

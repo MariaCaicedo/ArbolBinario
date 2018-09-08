@@ -11,7 +11,6 @@ import org.junit.Test;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  * @author ASUS
  */
@@ -127,6 +126,32 @@ public class ArbolBinarioBusquedaTest {
 
         Assert.assertEquals("liga izquierda de liga derecha de liga derecha de la raiz sea el cuarto nodo insertado", "1",
                 arbolBinario.retornarRaiz().getLigaIzquierda().getLigaIzquierda().getEstudiante().getCedula());
+    }
+
+    @Test
+    public void debeInsertarEnElOrden111614638232624() {
+        ArbolBinarioBusqueda pruebaArbol = new ArbolBinarioBusqueda();
+        Estudiante estudiante1 = new Estudiante("1", "juan", "calle", 20);
+        Nodo primerNodo = pruebaArbol.insertar(estudiante1.setCedula("11"));
+        Estudiante estudiante2 = new Estudiante("2", "juan", "calle", 20);
+        Nodo segundoNodo = pruebaArbol.insertar(estudiante2.setCedula("16"));
+        Estudiante estudiante3 = new Estudiante("3", "juan", "calle", 20);
+        Nodo tercerNodo = pruebaArbol.insertar(estudiante3.setCedula("14"));
+        Estudiante estudiante4 = new Estudiante("4", "juan", "calle", 20);
+        Nodo cuartoNodo = pruebaArbol.insertar(estudiante4.setCedula("6"));
+        Estudiante estudiante5 = new Estudiante("4", "juan", "calle", 20);
+        Nodo quintoNodo = pruebaArbol.insertar(estudiante4.setCedula("3"));
+        Estudiante estudiante6 = new Estudiante("4", "juan", "calle", 20);
+        Nodo sextoNodo = pruebaArbol.insertar(estudiante4.setCedula("8"));
+        Estudiante estudiante7 = new Estudiante("4", "juan", "calle", 20);
+        Nodo septimoNodo = pruebaArbol.insertar(estudiante4.setCedula("23"));
+        Estudiante estudiante8 = new Estudiante("4", "juan", "calle", 20);
+        Nodo octavoNodo = pruebaArbol.insertar(estudiante4.setCedula("26"));
+        Estudiante estudiante9 = new Estudiante("4", "juan", "calle", 20);
+        Nodo novenoNodo = pruebaArbol.insertar(estudiante4.setCedula("24"));
+
+        Assert.assertEquals("liga izquierda de liga derecha de liga derecha de la raiz sea el cuarto nodo insertado", "1",
+                pruebaArbol.retornarRaiz().getLigaIzquierda().getLigaIzquierda().getEstudiante().getCedula());
     }
 
     @Test

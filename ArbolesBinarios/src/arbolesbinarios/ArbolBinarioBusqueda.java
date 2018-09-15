@@ -40,7 +40,8 @@ public class ArbolBinarioBusqueda {
         if (this.raiz == null) {
             return insertarEnRaiz(estudiante);
         }
-        Nodo buscarSiExiste = this.buscarEstudianteConCedula(estudiante.getCedula());
+
+        Nodo buscarSiExiste = this.buscarEstudianteConCedula("" + estudiante.getCedula());
         if (buscarSiExiste != null) {
             System.out.println("EL ESTUDIANTE CON CEDULA " + estudiante.getCedula() + " YA EXISTE");
             return buscarSiExiste;
@@ -53,13 +54,13 @@ public class ArbolBinarioBusqueda {
     }
 
     private Nodo buscarDondeEInsertarDato(Nodo raiz, Estudiante estudiante) {
-        if (raiz.getEstudiante().getCedula().compareTo(estudiante.getCedula()) < 0) {
+        if (raiz.getEstudiante().getCedula() < estudiante.getCedula()) {
             if (raiz.getLigaDerecha() != null) {
                 raiz = buscarDondeEInsertarDato(raiz.getLigaDerecha(), estudiante);
             } else {
                 raiz.setLigaDerecha(new Nodo(estudiante, raiz));
             }
-        } else if (raiz.getEstudiante().getCedula().compareTo(estudiante.getCedula()) > 0) {
+        } else if (raiz.getEstudiante().getCedula() > estudiante.getCedula()) {
             if (raiz.getLigaIzquierda() != null) {
                 raiz = buscarDondeEInsertarDato(raiz.getLigaIzquierda(), estudiante);
             } else {
@@ -213,12 +214,15 @@ public class ArbolBinarioBusqueda {
     private int Altura(Nodo recorer, int nivel) {
         int altura = 0;
         if (recorer != null) {
-            if (recorer.getLigaIzquierda() != null)
+            if (recorer.getLigaIzquierda() != null) {
                 altura = Altura(recorer.getLigaIzquierda(), nivel + 1);
-            if (recorer.getLigaDerecha() != null)
+            }
+            if (recorer.getLigaDerecha() != null) {
                 altura = Altura(recorer.getLigaDerecha(), nivel + 1);
-            if (nivel > altura)
+            }
+            if (nivel > altura) {
                 altura = nivel;
+            }
         }
         return altura;
     }
@@ -226,9 +230,9 @@ public class ArbolBinarioBusqueda {
     public Nodo buscarEstudianteConCedula(String cedula) {
         Nodo aux = this.raiz;
         while (aux != null) {
-            if (aux.getEstudiante().getCedula().compareTo(cedula) == 0) {
+            if (aux.getEstudiante().getCedula() == Integer.parseInt(cedula)) {
                 return aux;
-            } else if (0 < aux.getEstudiante().getCedula().compareTo(cedula)) {
+            } else if (aux.getEstudiante().getCedula() < Integer.parseInt(cedula)) {
                 aux = aux.getLigaIzquierda();
             } else {
                 aux = aux.getLigaDerecha();
@@ -238,7 +242,7 @@ public class ArbolBinarioBusqueda {
     }
 
     public int factorDeValance(Nodo raiz) {
-        return Altura(raiz.getLigaIzquierda(), 0) - Altura(raiz.getLigaDerecha(), 0);
+        return altura(raiz.getLigaIzquierda()) - altura(raiz.getLigaDerecha());
     }
 
     public Nodo balancearArbol(Nodo raiz) {
@@ -252,6 +256,7 @@ public class ArbolBinarioBusqueda {
             if (factorDeBalanceDeQ == -1) {
                 raiz = dobleRotacionALaDerecha(raiz, q);
             }
+            System.out.println("Se balanceo con factor de balance " + factorDeBalance + " y el de q fue " + factorDeBalanceDeQ);
         }
         if (factorDeBalance == -2) {
             Nodo q = raiz.getLigaDerecha();
@@ -262,7 +267,9 @@ public class ArbolBinarioBusqueda {
             if (factorDeBalanceDeQ == 1) {
                 raiz = dobleRotacionALaIzquierda(raiz, q);
             }
+            System.out.println("Se balanceo con factor de balance " + factorDeBalance + " y el de q fue " + factorDeBalanceDeQ);
         }
+
         return raiz;
     }
 
@@ -295,4 +302,21 @@ public class ArbolBinarioBusqueda {
         r.setLigaIzquierda(p);
         return r;
     }
+
+    public int altura(Nodo raiz) {
+        int altura = 0;
+        if (raiz != null) {
+            if (this.raiz.getEstudiante().getCedula() == raiz.getEstudiante().getCedula()) {
+                altura = 1;
+            }
+            if (raiz.getLigaDerecha() != null || raiz.getLigaIzquierda() != null) {
+                altura++;
+            }
+            altura += this.altura(raiz.getLigaDerecha());
+            altura += this.altura(raiz.getLigaIzquierda());
+        }
+
+        return altura;
+    }
+
 }

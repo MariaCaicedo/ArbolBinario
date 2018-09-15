@@ -11,14 +11,14 @@ package arbolesbinarios;
  */
 public class Estudiante {
 
-    private String cedula;
+    private int cedula;
     private String nombre;
     private String direccion;
     private int edad;
 
     public Estudiante(String cedula, String nombre, String direccion, int edad) {
         super();
-        this.cedula = cedula;
+        this.cedula = Integer.parseInt(cedula);
         this.nombre = nombre;
         this.direccion = direccion;
         this.edad = edad;
@@ -26,18 +26,18 @@ public class Estudiante {
 
     public Estudiante() {
         super();
-        this.cedula = "";
+        this.cedula = 0;
         this.nombre = "";
         this.direccion = "";
         this.edad = 0;
     }
 
-    public String getCedula() {
+    public int getCedula() {
         return cedula;
     }
 
     public Estudiante setCedula(String cedula) {
-        this.cedula = cedula;
+        this.cedula = Integer.parseInt(cedula);
         return this;
     }
 

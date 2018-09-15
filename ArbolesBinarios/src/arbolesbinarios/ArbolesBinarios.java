@@ -59,22 +59,31 @@ public class ArbolesBinarios {
                     System.out.println("Dato Insertado");
                     break;
                 case 33:
-                    String datoAEliminar = JOptionPane.showInputDialog(null, "Debe ingresar la cedula del estudiante a eliminar", "Eliminar estudiante", JOptionPane.DEFAULT_OPTION);
-                    datoObtenido = datoAEliminar;
-                    arbolBinario.eliminar(datoObtenido);
-                    System.out.println("Dato Eliminado");
+                    if (arbolBinario.retornarRaiz() != null) {
+                        String datoAEliminar = JOptionPane.showInputDialog(null, "Debe ingresar la cedula del estudiante a eliminar", "Eliminar estudiante", JOptionPane.DEFAULT_OPTION);
+                        datoObtenido = datoAEliminar;
+                        arbolBinario.eliminar(datoObtenido);
+                        System.out.println("Dato Eliminado");
+                    }
+                    System.out.println("Actualmente el arbol no contiene registros de estudiantes");
                     break;
                 case 44:
-                    System.out.println("La Altura del arbol es: " + arbolBinario.Altura());
+                    if (arbolBinario.retornarRaiz() != null) {
+                        System.out.println("La Altura del arbol es: " + arbolBinario.Altura());
+                    }
+                    System.out.println("Actualmente el arbol no contiene registros de estudiantes");
                     break;
                 case 55:
-                    String buscar = JOptionPane.showInputDialog(null, "Ingrese la Cedula del Estudiante", "Buscar Estudiante", JOptionPane.DEFAULT_OPTION);
-                    Nodo respuesta = arbolBinario.buscarEstudianteConCedula(buscar);
-                    if (respuesta == null) {
-                        System.out.println("Estudiante no Existe");
-                    } else {
-                        System.out.println(respuesta.getEstudiante().toString());
+                    if (arbolBinario.retornarRaiz() != null) {
+                        String buscar = JOptionPane.showInputDialog(null, "Ingrese la Cedula del Estudiante", "Buscar Estudiante", JOptionPane.DEFAULT_OPTION);
+                        Nodo respuesta = arbolBinario.buscarEstudianteConCedula(buscar);
+                        if (respuesta == null) {
+                            System.out.println("Estudiante no Existe");
+                        } else {
+                            System.out.println(respuesta.getEstudiante().toString());
+                        }
                     }
+                    System.out.println("Actualmente el arbol no contiene registros de estudiantes");
                     break;
                 default:
                     JOptionPane.showMessageDialog(null, "Opcion no valida", "Intente de nuevo", JOptionPane.WARNING_MESSAGE);

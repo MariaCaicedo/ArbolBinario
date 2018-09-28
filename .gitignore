@@ -4,3 +4,8 @@
 /ArbolesBinarios/build/
 *.exec
 *.html
+*.class
+*.class
+ArbolesBinarios/.project
+*.class
+ArbolesBinarios/.classpath

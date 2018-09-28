@@ -1,9 +1,9 @@
 
-import arbolesbinarios.Estudiante;
-import arbolesbinarios.Nodo;
 import org.junit.Assert;
 import org.junit.Test;
 
+import arbolesbinarios.Estudiante;
+import arbolesbinarios.Nodo;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -16,33 +16,33 @@ import org.junit.Test;
  */
 public class NodoTest {
 
-    Estudiante estudiante = new Estudiante("1040", "wilmar", "calle 1", 20);
+	Estudiante estudiante = new Estudiante("1040", "wilmar", "calle 1", 20);
 
-    @org.junit.Test
-    public void debeObtenerElDatoDelNodoAVerificarQueEsElCharJ() {
-        //Arrange and action
-        Nodo nodoPrueba = new Nodo(estudiante, null);
+	@org.junit.Test
+	public void debeObtenerElDatoDelNodoAVerificarQueEsElCharJ() {
+		// Arrange and action
+		Nodo nodoPrueba = new Nodo(estudiante, null);
 
-        //assert
-        Assert.assertEquals("1040", nodoPrueba.getEstudiante().getCedula());
-    }
+		// assert
+		Assert.assertEquals(1040, nodoPrueba.getEstudiante().getCedula());
+	}
 
-    @Test
-    public void debeObtenerLaLigaDerechaQueDebeSerNull() {
-        Nodo nodoPrueba = new Nodo(estudiante, null);
-        Assert.assertNull(nodoPrueba.getLigaDerecha());
-    }
+	@Test
+	public void debeObtenerLaLigaDerechaQueDebeSerNull() {
+		Nodo nodoPrueba = new Nodo(estudiante, null);
+		Assert.assertNull(nodoPrueba.getLigaDerecha());
+	}
 
-    @Test
-    public void debeColocarElDatoDelNodoQueEsElCharA() {
-        //arrange
-        Nodo nodoPrueba = new Nodo(estudiante, null);
+	@Test
+	public void debeColocarElDatoDelNodoQueEsElCharA() {
+		// arrange
+		Nodo nodoPrueba = new Nodo(estudiante, null);
 
-        //action
-        Estudiante nuevo = new Estudiante("1", "nuevo", "nuevo", 20);
-        nodoPrueba.setEstudiante(nuevo);
+		// action
+		Estudiante nuevo = new Estudiante("1", "nuevo", "nuevo", 20);
+		nodoPrueba.setEstudiante(nuevo);
 
-        //assert
-        Assert.assertEquals("nuevo", nodoPrueba.getEstudiante().getNombre());
-    }
+		// assert
+		Assert.assertEquals("nuevo", nodoPrueba.getEstudiante().getNombre());
+	}
 }

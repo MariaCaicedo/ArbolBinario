@@ -119,7 +119,7 @@ public class ArbolBinarioBusquedaTest {
         arbolBinario.insertar(estudiante4);
         Assert.assertEquals(
                 "liga derecha de la liga izquierda de liga izquierda de la raiz sea el cuarto nodo insertado", 15,
-                arbolBinario.retornarRaiz().getLigaIzquierda().getLigaDerecha().getEstudiante().getCedula());
+                arbolBinario.retornarRaiz().getLigaDerecha().getLigaIzquierda().getEstudiante().getCedula());
 
         Estudiante estudiante6 = new Estudiante("16", "juan", "calle", 20);
         arbolBinario.insertar(estudiante6);
@@ -374,7 +374,7 @@ public class ArbolBinarioBusquedaTest {
 
     @Test
     public void altura0() {
-        int altura = arbolBinario.Altura();
+        int altura = arbolBinario.altura(arbolBinario.retornarRaiz());
         Assert.assertEquals("se esperaba que la altura sea 0", 0, altura);
     }
 
@@ -382,7 +382,7 @@ public class ArbolBinarioBusquedaTest {
     public void altura1() {
         arbolBinario.insertar(estudiante);
 
-        int altura1 = arbolBinario.Altura();
+        int altura1 = arbolBinario.altura(arbolBinario.retornarRaiz());
 
         Assert.assertEquals("se esperaba que la altura fuese 1", 1, altura1);
     }
@@ -397,25 +397,14 @@ public class ArbolBinarioBusquedaTest {
     }
 
     @Test
-    public void altura3() {
-        arbolBinario.insertar(estudiante.setCedula("6"));
-        Estudiante nuevo = new Estudiante("1", "", "", 12);
-        arbolBinario.insertar(nuevo);
-        Estudiante nuevo1 = new Estudiante("5", "", "", 42);
-        arbolBinario.insertar(nuevo1);
-
-        int altura3 = arbolBinario.Altura();
-
-        Assert.assertEquals("se esperaba que la altura fuese 3", 3, altura3);
-    }
-
-    @Test
     public void altura3test() {
         arbolBinario.insertar(estudiante.setCedula("6"));
         Estudiante nuevo = new Estudiante("1", "", "", 12);
         arbolBinario.insertar(nuevo);
         Estudiante nuevo1 = new Estudiante("5", "", "", 42);
         arbolBinario.insertar(nuevo1);
+        estudiante = new Estudiante("2", "jaun", "calle", 18);
+        arbolBinario.insertar(estudiante);
 
         int altura3 = arbolBinario.altura(arbolBinario.retornarRaiz());
 

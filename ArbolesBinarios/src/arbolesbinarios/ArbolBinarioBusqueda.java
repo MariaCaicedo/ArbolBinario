@@ -68,9 +68,6 @@ public class ArbolBinarioBusqueda {
                 raiz.setLigaIzquierda(new Nodo(estudiante, raiz));
             }
         }
-        if (raiz.getPadre() != null) {
-            raiz = balancearArbol(raiz);
-        }
         return raiz;
     }
 
@@ -101,12 +98,10 @@ public class ArbolBinarioBusqueda {
         Nodo padre = aEliminar.getPadre();
         if (padre == null) {
             this.raiz = null;
+        } else if (padre.getLigaDerecha().getEstudiante().equals(aEliminar.getEstudiante())) {
+            padre.setLigaDerecha(null);
         } else {
-            if (padre.getLigaDerecha().getEstudiante().equals(aEliminar.getEstudiante())) {
-                padre.setLigaDerecha(null);
-            } else {
-                padre.setLigaIzquierda(null);
-            }
+            padre.setLigaIzquierda(null);
         }
         return true;
     }
@@ -123,28 +118,24 @@ public class ArbolBinarioBusqueda {
                 raiz.getLigaIzquierda().setPadre(null);
                 return true;
             }
-        } else {
-            if (padre.getLigaDerecha().equals(aEliminar)) {
-                if (aEliminar.getLigaDerecha() == null) {
-                    padre.setLigaDerecha(aEliminar.getLigaIzquierda());
-                    padre.getLigaDerecha().setPadre(padre);
-                    return true;
-                } else {
-                    padre.setLigaDerecha(aEliminar.getLigaDerecha());
-                    padre.getLigaDerecha().setPadre(padre);
-                    return true;
-                }
+        } else if (padre.getLigaDerecha().equals(aEliminar)) {
+            if (aEliminar.getLigaDerecha() == null) {
+                padre.setLigaDerecha(aEliminar.getLigaIzquierda());
+                padre.getLigaDerecha().setPadre(padre);
+                return true;
             } else {
-                if (aEliminar.getLigaDerecha() == null) {
-                    padre.setLigaIzquierda(aEliminar.getLigaIzquierda());
-                    padre.getLigaIzquierda().setPadre(padre);
-                    return true;
-                } else {
-                    padre.setLigaIzquierda(aEliminar.getLigaDerecha());
-                    padre.getLigaIzquierda().setPadre(padre);
-                    return true;
-                }
+                padre.setLigaDerecha(aEliminar.getLigaDerecha());
+                padre.getLigaDerecha().setPadre(padre);
+                return true;
             }
+        } else if (aEliminar.getLigaDerecha() == null) {
+            padre.setLigaIzquierda(aEliminar.getLigaIzquierda());
+            padre.getLigaIzquierda().setPadre(padre);
+            return true;
+        } else {
+            padre.setLigaIzquierda(aEliminar.getLigaDerecha());
+            padre.getLigaIzquierda().setPadre(padre);
+            return true;
         }
     }
 
@@ -210,26 +201,6 @@ public class ArbolBinarioBusqueda {
         }
     }
 
-    public int Altura() {
-        return Altura(raiz, 1);
-    }
-
-    private int Altura(Nodo recorer, int nivel) {
-        int altura = 0;
-        if (recorer != null) {
-            if (recorer.getLigaIzquierda() != null) {
-                altura = Altura(recorer.getLigaIzquierda(), nivel + 1);
-            }
-            if (recorer.getLigaDerecha() != null) {
-                altura = Altura(recorer.getLigaDerecha(), nivel + 1);
-            }
-            if (nivel > altura) {
-                altura = nivel;
-            }
-        }
-        return altura;
-    }
-
     public Nodo buscarEstudianteConCedula(int cedula) {
         Nodo aux = this.raiz;
         while (aux != null) {
@@ -256,6 +227,9 @@ public class ArbolBinarioBusqueda {
     }
 
     public Nodo balancearArbol(Nodo raiz) {
+        if (raiz == null) {
+            return raiz;
+        }
         int factorDeBalance = this.factorDeValance(raiz);
         if (factorDeBalance == 2) {
             Nodo q = raiz.getLigaIzquierda();
@@ -269,8 +243,7 @@ public class ArbolBinarioBusqueda {
                 raiz = dobleRotacionALaDerecha(raiz, q);
                 System.out.println("Se aplico doble Rotacion Derecha");
             }
-            System.out.println(
-                    "Se balanceo con factor de balance " + factorDeBalance + " y el de q fue " + factorDeBalanceDeQ);
+            raiz.setLigaIzquierda(balancearArbol(raiz.getLigaIzquierda()));
         }
         if (factorDeBalance == -2) {
             Nodo q = raiz.getLigaDerecha();
@@ -283,10 +256,8 @@ public class ArbolBinarioBusqueda {
                 raiz = dobleRotacionALaIzquierda(raiz, q);
                 System.out.println("Se aplico doble Rotacion izquierda");
             }
-            System.out.println(
-                    "Se balanceo con factor de balance " + factorDeBalance + " y el de q fue " + factorDeBalanceDeQ);
+            raiz.setLigaDerecha(balancearArbol(raiz.getLigaDerecha()));
         }
-
         return raiz;
     }
 

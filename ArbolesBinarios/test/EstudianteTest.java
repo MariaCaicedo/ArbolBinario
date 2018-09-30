@@ -19,7 +19,7 @@ public class EstudianteTest {
     @Test
     public void debeCrearEstudiateYObtenerNombre() {
         estudiante = new Estudiante("104", "juan", "carrera 52", 18);
-        assertEquals("se esperaba que la cedula del estudiante sea 104", "104", estudiante.getCedula());
+        assertEquals("se esperaba que la cedula del estudiante sea 104", 104, estudiante.getCedula());
         assertEquals("se esperaba que el nombre del estudiante sea juan", "juan", estudiante.getNombre());
         assertEquals("se esperaba que la direccion del estudiante sea carrera 52", "carrera 52", estudiante.getDireccion());
         assertEquals("se espetaba que la edad del estudiante sea 18", 18, estudiante.getEdad());

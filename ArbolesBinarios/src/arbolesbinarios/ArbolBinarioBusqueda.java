@@ -235,12 +235,12 @@ public class ArbolBinarioBusqueda {
             Nodo q = raiz.getLigaIzquierda();
             int factorDeBalanceDeQ = this.factorDeValance(q);
             if (factorDeBalanceDeQ == 1) {
-                raiz = unaRotacionALaDerecha(raiz, q);
+                raiz = unaRotationALaDerecha(raiz, q);
                 System.out.println("Se aplico una Rotacion Derecha");
 
             }
             if (factorDeBalanceDeQ == -1) {
-                raiz = dobleRotacionALaDerecha(raiz, q);
+                raiz = doableRotationALaDerecha(raiz, q);
                 System.out.println("Se aplico doble Rotacion Derecha");
             }
             raiz.setLigaIzquierda(balancearArbol(raiz.getLigaIzquierda()));
@@ -249,11 +249,11 @@ public class ArbolBinarioBusqueda {
             Nodo q = raiz.getLigaDerecha();
             int factorDeBalanceDeQ = this.factorDeValance(q);
             if (factorDeBalanceDeQ == -1) {
-                raiz = unaRotacionaLaIzquierda(raiz, q);
+                raiz = unaRotationLaIzquierda(raiz, q);
                 System.out.println("Se aplico una Rotacion izquierda");
             }
             if (factorDeBalanceDeQ == 1) {
-                raiz = dobleRotacionALaIzquierda(raiz, q);
+                raiz = doableRotationALaIzquierda(raiz, q);
                 System.out.println("Se aplico doble Rotacion izquierda");
             }
             raiz.setLigaDerecha(balancearArbol(raiz.getLigaDerecha()));
@@ -261,13 +261,13 @@ public class ArbolBinarioBusqueda {
         return raiz;
     }
 
-    public Nodo unaRotacionALaDerecha(Nodo p, Nodo q) {
+    public Nodo unaRotationALaDerecha(Nodo p, Nodo q) {
         p.setLigaIzquierda(q.getLigaDerecha());
         q.setLigaDerecha(p);
         return q;
     }
 
-    public Nodo dobleRotacionALaDerecha(Nodo p, Nodo q) {
+    public Nodo doableRotationALaDerecha(Nodo p, Nodo q) {
         Nodo r = q.getLigaDerecha();
         q.setLigaDerecha(q.getLigaIzquierda());
         r.setLigaIzquierda(q);
@@ -276,13 +276,13 @@ public class ArbolBinarioBusqueda {
         return r;
     }
 
-    public Nodo unaRotacionaLaIzquierda(Nodo p, Nodo q) {
+    public Nodo unaRotationLaIzquierda(Nodo p, Nodo q) {
         p.setLigaDerecha(q.getLigaIzquierda());
         q.setLigaIzquierda(p);
         return q;
     }
 
-    public Nodo dobleRotacionALaIzquierda(Nodo p, Nodo q) {
+    public Nodo doableRotationALaIzquierda(Nodo p, Nodo q) {
         Nodo r = q.getLigaIzquierda();
         q.setLigaIzquierda(r.getLigaDerecha());
         r.setLigaDerecha(q);
@@ -307,4 +307,7 @@ public class ArbolBinarioBusqueda {
         return altura;
     }
 
+    public boolean isEmpty(){
+        return this.raiz==null;
+    }
 }

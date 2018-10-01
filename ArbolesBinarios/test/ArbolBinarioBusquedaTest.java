@@ -153,33 +153,33 @@ public class ArbolBinarioBusquedaTest {
     @Test
     public void debeInsertarEnElOrden111614638232624() {
         ArbolBinarioBusqueda pruebaArbol = new ArbolBinarioBusqueda();
-        Estudiante estudiante1 = new Estudiante("11", "juan", "calle", 20);
-        pruebaArbol.insertar(estudiante1);
+        estudiante = new Estudiante("11", "juan", "calle", 20);
+        pruebaArbol.insertar(estudiante);
         Assert.assertEquals("se esperaba la raiz sea el nodo insertado con cedula", 11,
                 pruebaArbol.retornarRaiz().getEstudiante().getCedula());
 
-        Estudiante estudiante2 = new Estudiante("16", "juan", "calle", 20);
-        pruebaArbol.insertar(estudiante2);
+        estudiante = new Estudiante("16", "felipe", "carrera", 22);
+        pruebaArbol.insertar(estudiante);
         Assert.assertEquals("se esperaba que la liga derecha de la raiz sea el nodo insertado con cedula", 16,
                 pruebaArbol.retornarRaiz().getLigaDerecha().getEstudiante().getCedula());
 
-        Estudiante estudiante3 = new Estudiante("14", "juan", "calle", 20);
-        pruebaArbol.insertar(estudiante3);
+        estudiante = new Estudiante("14", "esteban", "avenida", 25);
+        pruebaArbol.insertar(estudiante);
         Assert.assertEquals("se esperaba la raiz sea el nodo insertado con cedula", 14,
                 pruebaArbol.retornarRaiz().getEstudiante().getCedula());
 
-        Estudiante estudiante4 = new Estudiante("6", "juan", "calle", 20);
-        pruebaArbol.insertar(estudiante4);
+        estudiante = new Estudiante("6", "ivan", "calle", 30);
+        pruebaArbol.insertar(estudiante);
         Assert.assertEquals("se esperaba que la liga derecha de la raiz sea el nodo insertado con cedula", 16,
                 pruebaArbol.retornarRaiz().getLigaDerecha().getEstudiante().getCedula());
 
-        Estudiante estudiante5 = new Estudiante("3", "juan", "calle", 20);
-        pruebaArbol.insertar(estudiante5);
-        Assert.assertEquals("se esperaba que la liga izquierda de la raiz sea el nodo insertado con cedula", 11,
+        estudiante = new Estudiante("3", "rodrigo", "carrera", 31);
+        pruebaArbol.insertar(estudiante);
+        Assert.assertEquals("se esperaba que la liga izquierda de la raiz sea el nodo insertado con cedula", 6,
                 pruebaArbol.retornarRaiz().getLigaIzquierda().getEstudiante().getCedula());
 
-        Estudiante estudiante6 = new Estudiante("8", "juan", "calle", 20);
-        pruebaArbol.insertar(estudiante6);
+        estudiante = new Estudiante("8", "carlos", "carrera", 18);
+        pruebaArbol.insertar(estudiante);
         Assert.assertEquals("se esperaba que la liga izquierda de la raiz sea el nodo insertado con cedula", 6,
                 pruebaArbol.retornarRaiz().getLigaIzquierda().getEstudiante().getCedula());
 
@@ -199,6 +199,9 @@ public class ArbolBinarioBusquedaTest {
                 pruebaArbol.retornarRaiz().getLigaDerecha().getEstudiante().getCedula());
         Assert.assertEquals("se esperaba que la liga izquierda de la raiz sea el nodo insertado con cedula", 6,
                 pruebaArbol.retornarRaiz().getLigaIzquierda().getEstudiante().getCedula());
+        Assert.assertEquals("se espera que el hijo mas izquierdo sea el estudiante con cedula 3",3,
+                pruebaArbol.retornarRaiz().getLigaIzquierda().getLigaIzquierda().getEstudiante().getCedula());
+
     }
 
     @Test
@@ -439,10 +442,6 @@ public class ArbolBinarioBusquedaTest {
         arbolBinario.insertar(estudiante.setCedula("80"));
         Estudiante nuevo = new Estudiante("95", "", "", 25);
         arbolBinario.insertar(nuevo);
-        Estudiante nuevo1 = new Estudiante("81", "", "", 25);
-        arbolBinario.insertar(nuevo1);
-        Estudiante nuevo3 = new Estudiante("61", "", "", 25);
-        arbolBinario.insertar(nuevo3);
 
         int valance = arbolBinario.factorDeValance(arbolBinario.retornarRaiz());
 

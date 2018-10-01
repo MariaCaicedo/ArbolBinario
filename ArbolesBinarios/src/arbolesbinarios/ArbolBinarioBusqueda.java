@@ -46,7 +46,8 @@ public class ArbolBinarioBusqueda {
             return buscarSiExiste;
         }
         this.buscarDondeEInsertarDato(this.raiz, estudiante);
-        this.raiz = balancearArbol(this.raiz);
+        balancearArbol();
+        reasignarPadres();
         return buscarEstudianteConCedula(estudiante.getCedula());
     }
 
@@ -90,6 +91,8 @@ public class ArbolBinarioBusqueda {
                     return EliminarNodoConHijos(aEliminar);
                 }
             }
+            balancearArbol();
+            reasignarPadres();
         }
         return false;
     }
@@ -150,7 +153,6 @@ public class ArbolBinarioBusqueda {
             } else if (!hijoMasIzquierdo.getPadre().equals(this.raiz)) {
                 hijoMasIzquierdo.getPadre().setLigaIzquierda(null);
             }
-            this.raiz = this.balancearArbol(this.raiz);
             return true;
         } else {
             Nodo hijoMasIzquierdo = obtenerNodoMasIzquierdo(padre.getLigaDerecha());
@@ -161,7 +163,6 @@ public class ArbolBinarioBusqueda {
             } else if (!hijoMasIzquierdo.getPadre().equals(padre)) {
                 hijoMasIzquierdo.getPadre().setLigaIzquierda(null);
             }
-            this.raiz = this.balancearArbol(this.raiz);
             return true;
         }
     }
@@ -226,7 +227,35 @@ public class ArbolBinarioBusqueda {
         return hijoIzqierdo - hijoDerecho;
     }
 
-    public Nodo balancearArbol(Nodo raiz) {
+    private void balancearArbol() {
+        if (raiz != null) {
+            if (raiz.getLigaDerecha() != null) {
+                raiz.setLigaDerecha(obtieneHijomasDerechoYBalancea(raiz.getLigaDerecha()));
+            }
+            if (raiz.getLigaIzquierda() != null) {
+                raiz.setLigaIzquierda(obtieneHijomasIzquierdoYBalancea(raiz.getLigaIzquierda()));
+            }
+            raiz = balancearArbol(raiz);
+        }
+    }
+
+    private Nodo obtieneHijomasDerechoYBalancea(Nodo hijoDerecho) {
+        if (hijoDerecho != null) {
+            obtieneHijomasDerechoYBalancea(hijoDerecho.getLigaDerecha());
+        }
+        hijoDerecho = balancearArbol(hijoDerecho);
+        return hijoDerecho;
+    }
+
+    private Nodo obtieneHijomasIzquierdoYBalancea(Nodo hijoIzquierdo) {
+        if (hijoIzquierdo != null) {
+            obtieneHijomasIzquierdoYBalancea(hijoIzquierdo.getLigaIzquierda());
+        }
+        hijoIzquierdo = balancearArbol(hijoIzquierdo);
+        return hijoIzquierdo;
+    }
+
+    private Nodo balancearArbol(Nodo raiz) {
         if (raiz == null) {
             return raiz;
         }
@@ -307,7 +336,24 @@ public class ArbolBinarioBusqueda {
         return altura;
     }
 
-    public boolean isEmpty(){
-        return this.raiz==null;
+    public boolean isEmpty() {
+        return this.raiz == null;
+    }
+
+    private void reasignarPadres() {
+        if (raiz != null) {
+            raiz.setPadre(null);
+            reasignarPadres(raiz.getLigaDerecha(), raiz);
+            reasignarPadres(raiz.getLigaIzquierda(), raiz);
+        }
+    }
+
+    private void reasignarPadres(Nodo hijo, Nodo padre) {
+        if (hijo != null) {
+            reasignarPadres(hijo.getLigaDerecha(), hijo);
+            reasignarPadres(hijo.getLigaIzquierda(), hijo);
+            hijo.setPadre(padre);
+        }
+
     }
 }

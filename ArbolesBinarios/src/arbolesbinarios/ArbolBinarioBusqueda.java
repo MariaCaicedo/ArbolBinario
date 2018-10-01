@@ -242,18 +242,18 @@ public class ArbolBinarioBusqueda {
 	}
 
 	private Nodo obtieneHijomasDerechoYBalancea(Nodo hijoDerecho) {
-		hijoDerecho = balancearArbol(hijoDerecho);
 		if (hijoDerecho != null) {
-			obtieneHijomasDerechoYBalancea(hijoDerecho.getLigaDerecha());
+			hijoDerecho.setLigaDerecha(obtieneHijomasDerechoYBalancea(hijoDerecho.getLigaDerecha()));
 		}
+		hijoDerecho = balancearArbol(hijoDerecho);
 		return hijoDerecho;
 	}
 
 	private Nodo obtieneHijomasIzquierdoYBalancea(Nodo hijoIzquierdo) {
-		hijoIzquierdo = balancearArbol(hijoIzquierdo);
 		if (hijoIzquierdo != null) {
-			obtieneHijomasIzquierdoYBalancea(hijoIzquierdo.getLigaIzquierda());
+			hijoIzquierdo.setLigaIzquierda(obtieneHijomasIzquierdoYBalancea(hijoIzquierdo.getLigaIzquierda()));
 		}
+		hijoIzquierdo = balancearArbol(hijoIzquierdo);
 		return hijoIzquierdo;
 	}
 

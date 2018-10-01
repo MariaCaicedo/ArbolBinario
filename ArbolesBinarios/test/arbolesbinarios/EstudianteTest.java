@@ -1,3 +1,4 @@
+package arbolesbinarios;
 
 import arbolesbinarios.Estudiante;
 

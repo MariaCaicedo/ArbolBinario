@@ -298,7 +298,7 @@ public class ArbolBinarioBusqueda {
 
     public Nodo doableRotationALaDerecha(Nodo p, Nodo q) {
         Nodo r = q.getLigaDerecha();
-        q.setLigaDerecha(q.getLigaIzquierda());
+        q.setLigaDerecha(r.getLigaIzquierda());
         r.setLigaIzquierda(q);
         p.setLigaIzquierda(r.getLigaDerecha());
         r.setLigaDerecha(p);

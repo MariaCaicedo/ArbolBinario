@@ -153,7 +153,7 @@ public class ArbolBinarioBusquedaTest {
 	}
 
 	@Test
-	public void debeInsertarEnElOrden111614638232624() {
+	public void debeInsertarEnElOrden11161463823262421() {
 		ArbolBinarioBusqueda pruebaArbol = new ArbolBinarioBusqueda();
 		estudiante = new Estudiante("11", "juan", "calle", 20);
 		pruebaArbol.insertar(estudiante);
@@ -208,6 +208,11 @@ public class ArbolBinarioBusquedaTest {
 		Assert.assertTrue("se esperaba que el estudiante con cedula 24 existiera",
 				pruebaArbol.buscarEstudianteConCedula(24) != null);
 
+		estudiante = new Estudiante("21", "camilo", "calle", 30);
+		pruebaArbol.insertar(estudiante);
+		Assert.assertTrue("se esperaba que el estudiante con cedula 21 existiera",
+				pruebaArbol.buscarEstudianteConCedula(21) != null);
+
 		Assert.assertEquals("se esperaba la raiz sea el nodo insertado con cedula", 11,
 				pruebaArbol.retornarRaiz().getEstudiante().getCedula());
 		Assert.assertEquals("se esperaba que la liga derecha de la raiz sea el nodo insertado con cedula", 16,
@@ -216,6 +221,8 @@ public class ArbolBinarioBusquedaTest {
 				pruebaArbol.retornarRaiz().getLigaIzquierda().getEstudiante().getCedula());
 		Assert.assertEquals("se espera que el hijo mas izquierdo sea el estudiante con cedula 3", 3,
 				pruebaArbol.retornarRaiz().getLigaIzquierda().getLigaIzquierda().getEstudiante().getCedula());
+		Assert.assertEquals("se espera que el hijo mas derecho sea el estudiante con cedula 23", 21, pruebaArbol
+				.retornarRaiz().getLigaDerecha().getLigaDerecha().getLigaDerecha().getEstudiante().getCedula());
 	}
 
 	@Test

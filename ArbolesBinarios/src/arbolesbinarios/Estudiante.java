@@ -5,8 +5,8 @@ package arbolesbinarios;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 /**
- *
  * @author sala203
  */
 public class Estudiante {
@@ -70,7 +70,7 @@ public class Estudiante {
 
     @Override
     public String toString() {
-        return "Estudiante: [" + "Cedula: " + this.cedula + " " + "Nombre: "
-                + this.nombre + " " + "Direccion: " + this.direccion + " " + "Edad: " + this.edad;
+        return "Estudiante: [" + "Cedula: " + this.cedula + ", " + "Nombre: "
+                + this.nombre + ", " + "Direccion: " + this.direccion + ", " + "Edad: " + this.edad + "]";
     }
 }

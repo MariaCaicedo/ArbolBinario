@@ -12,6 +12,7 @@ import arbolesbinarios.Nodo;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 /**
  * @author ASUS
  */
@@ -102,7 +103,7 @@ public class ArbolBinarioBusquedaTest {
     }
 
     @Test
-    public void debeInsertar3NivelesEnElOrden146DebeQuedarIzquierdoIzquierdoDerecho() {
+    public void debeInsertar3Niveles() {
         Estudiante estudiante1 = new Estudiante("14", "juan", "calle", 20);
         arbolBinario.insertar(estudiante1);
         Assert.assertEquals("raiz 14 no insertado", 14, arbolBinario.retornarRaiz().getEstudiante().getCedula());
@@ -118,37 +119,35 @@ public class ArbolBinarioBusquedaTest {
         Estudiante estudiante4 = new Estudiante("15", "juan", "calle", 20);
         arbolBinario.insertar(estudiante4);
         Assert.assertEquals(
-                "liga derecha de la liga izquierda de liga izquierda de la raiz sea el cuarto nodo insertado", 15,
+                "hijo izquierdo del hijo derecho la raiz mal insertado", 15,
                 arbolBinario.retornarRaiz().getLigaDerecha().getLigaIzquierda().getEstudiante().getCedula());
 
         Estudiante estudiante6 = new Estudiante("16", "juan", "calle", 20);
         arbolBinario.insertar(estudiante6);
-        Assert.assertEquals(
-                "liga derecha de la liga izquierda de liga izquierda de la raiz sea el cuarto nodo insertado", 16,
-                arbolBinario.retornarRaiz().getLigaDerecha().getLigaIzquierda().getEstudiante().getCedula());
+        Assert.assertEquals("nuevo hijo derecho mal insertado o mal rotado", 16,
+                arbolBinario.retornarRaiz().getLigaDerecha().getEstudiante().getCedula());
     }
 
     @Test
-    public void debeInsertar3NivelesEnElOrden161316DebeQuedarDerechoDerechoIzquierdo() {
-        Estudiante estudiante1 = new Estudiante("6", "juan", "calle", 20);
-        arbolBinario.insertar(estudiante1);
-
+    public void debeInsertar3NivelesEnElOrden616134() {
+        estudiante = new Estudiante("6", "juan", "calle", 20);
+        arbolBinario.insertar(estudiante);
         Assert.assertEquals("se espera que la raiz sea 6", 6, arbolBinario.retornarRaiz().getEstudiante().getCedula());
 
-        Estudiante estudiante2 = new Estudiante("16", "juan", "calle", 20);
-        arbolBinario.insertar(estudiante2);
-
+        estudiante = new Estudiante("16", "juan", "calle", 20);
+        arbolBinario.insertar(estudiante);
         Assert.assertEquals("se espera que la liga derecha de la raiz sea 16", 16,
                 arbolBinario.retornarRaiz().getLigaDerecha().getEstudiante().getCedula());
 
-        Estudiante estudiante3 = new Estudiante("13", "juan", "calle", 20);
-        arbolBinario.insertar(estudiante3.setCedula("13"));
+        estudiante = new Estudiante("13", "juan", "calle", 20);
+        arbolBinario.insertar(estudiante);
+        Assert.assertEquals("se espera la nueva raiz sea 13", 13,
+                arbolBinario.retornarRaiz().getEstudiante().getCedula());
 
-        Estudiante estudiante4 = new Estudiante("4", "juan", "calle", 20);
-        arbolBinario.insertar(estudiante4.setCedula("1"));
-
-        Assert.assertEquals("liga izquierda de liga derecha de liga derecha de la raiz sea el cuarto nodo insertado",
-                13, arbolBinario.retornarRaiz().getLigaIzquierda().getLigaIzquierda().getEstudiante().getCedula());
+        estudiante = new Estudiante("4", "juan", "calle", 20);
+        arbolBinario.insertar(estudiante);
+        Assert.assertEquals("se espera que la liga mas izquierda de la raiz sea 4",
+                4, arbolBinario.retornarRaiz().getLigaIzquierda().getLigaIzquierda().getEstudiante().getCedula());
     }
 
     @Test

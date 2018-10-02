@@ -3,9 +3,6 @@ package arbolesbinarios;
 import org.junit.Assert;
 import org.junit.Test;
 
-import arbolesbinarios.Estudiante;
-import arbolesbinarios.Nodo;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -17,7 +14,7 @@ import arbolesbinarios.Nodo;
  */
 public class NodoTest {
 
-	Estudiante estudiante = new Estudiante("1040", "wilmar", "calle 1", 20);
+	Estudiante estudiante = new Estudiante(1040, "wilmar", "calle 1", 20);
 
 	@org.junit.Test
 	public void debeObtenerElDatoDelNodoAVerificarQueEsElCharJ() {
@@ -40,7 +37,7 @@ public class NodoTest {
 		Nodo nodoPrueba = new Nodo(estudiante, null);
 
 		// action
-		Estudiante nuevo = new Estudiante("1", "nuevo", "nuevo", 20);
+		Estudiante nuevo = new Estudiante(1, "nuevo", "nuevo", 20);
 		nodoPrueba.setEstudiante(nuevo);
 
 		// assert

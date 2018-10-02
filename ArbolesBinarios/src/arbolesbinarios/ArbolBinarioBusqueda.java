@@ -118,10 +118,10 @@ public class ArbolBinarioBusqueda {
 		if (padre == null) {
 			if (this.raiz.getLigaDerecha() != null) {
 				this.raiz = raiz.getLigaDerecha();
-				raiz.getLigaDerecha().setPadre(null);
+				raiz.setPadre(null);
 			} else {
 				this.raiz = raiz.getLigaIzquierda();
-				raiz.getLigaIzquierda().setPadre(null);
+				raiz.setPadre(null);
 			}
 		} else if (padre.getLigaDerecha().equals(aEliminar)) {
 			if (aEliminar.getLigaDerecha() == null) {

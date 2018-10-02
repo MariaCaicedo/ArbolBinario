@@ -63,8 +63,13 @@ public class ArbolesBinarios {
                         int dataEliminate = obtenerNumeroPorPantallaConMensaje(
                                 "Debe ingresar la cedula del estudiante a eliminar", "Eliminar estudiante");
                         if (dataEliminate != 0) {
-                            arbolBinary.eliminar(dataEliminate);
-                            JOptionPane.showMessageDialog(null, "Estudiante con cedula" + dataEliminate + " eliminado con exito", "Dato Eliminado", JOptionPane.INFORMATION_MESSAGE);
+                            Boolean eliminado = arbolBinary.eliminar(dataEliminate);
+                            if(eliminado) {
+                            	JOptionPane.showMessageDialog(null, "Estudiante con cedula" + dataEliminate + " eliminado con exito", "Dato Eliminado", JOptionPane.INFORMATION_MESSAGE);                            	
+                            }
+                            else {
+                            	JOptionPane.showMessageDialog(null, "Estudiante con cedula" + dataEliminate + " no fue eliminado", "Dato No Eliminado", JOptionPane.INFORMATION_MESSAGE);
+                            }
                         }
                         break;
                     case 44:

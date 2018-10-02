@@ -387,6 +387,28 @@ public class ArbolBinarioBusquedaTest {
 	}
 
 	@Test
+	public void debeEliminarTodosLosDatosDelArbol() {
+		estudiante = new Estudiante("6", "juan", "calle", 20);
+		arbolBinario.insertar(estudiante);
+		Assert.assertEquals("se espera que la raiz sea 6", 6, arbolBinario.retornarRaiz().getEstudiante().getCedula());
+
+		estudiante = new Estudiante("16", "juan", "calle", 20);
+		arbolBinario.insertar(estudiante);
+		Assert.assertEquals("se espera que la liga derecha de la raiz sea 16", 16,
+				arbolBinario.retornarRaiz().getLigaDerecha().getEstudiante().getCedula());
+
+		estudiante = new Estudiante("13", "juan", "calle", 20);
+		arbolBinario.insertar(estudiante);
+		Assert.assertEquals("se espera la nueva raiz sea 13", 13,
+				arbolBinario.retornarRaiz().getEstudiante().getCedula());
+
+		estudiante = new Estudiante("4", "juan", "calle", 20);
+		arbolBinario.insertar(estudiante);
+		
+		
+	}
+	
+	@Test
 	public void altura0() {
 		int altura = arbolBinario.altura(arbolBinario.retornarRaiz());
 		Assert.assertEquals("se esperaba que la altura sea 0", 0, altura);

@@ -390,24 +390,24 @@ public class ArbolBinarioBusquedaTest {
 	public void debeEliminarTodosLosDatosDelArbol() {
 		estudiante = new Estudiante("6", "juan", "calle", 20);
 		arbolBinario.insertar(estudiante);
-		Assert.assertEquals("se espera que la raiz sea 6", 6, arbolBinario.retornarRaiz().getEstudiante().getCedula());
 
 		estudiante = new Estudiante("16", "juan", "calle", 20);
 		arbolBinario.insertar(estudiante);
-		Assert.assertEquals("se espera que la liga derecha de la raiz sea 16", 16,
-				arbolBinario.retornarRaiz().getLigaDerecha().getEstudiante().getCedula());
 
 		estudiante = new Estudiante("13", "juan", "calle", 20);
 		arbolBinario.insertar(estudiante);
-		Assert.assertEquals("se espera la nueva raiz sea 13", 13,
-				arbolBinario.retornarRaiz().getEstudiante().getCedula());
+		Assert.assertTrue("se esperaba eliminara el estudiante con cedula 13", arbolBinario.eliminar(13));
 
 		estudiante = new Estudiante("4", "juan", "calle", 20);
 		arbolBinario.insertar(estudiante);
-		
-		
+
+		Assert.assertTrue("se esperaba eliminara el estudiante con cedula 6", arbolBinario.eliminar(6));
+		Assert.assertTrue("se esperaba eliminara el estudiante con cedula 4", arbolBinario.eliminar(4));
+		Assert.assertFalse("se esperaba no encontrara el estudiante con cedula 13", arbolBinario.eliminar(13));
+		Assert.assertTrue("se esperaba eliminara el estudiante con cedula 16", arbolBinario.eliminar(16));
+		Assert.assertTrue("se esperaba que el arbo quede vacio", arbolBinario.isEmpty());
 	}
-	
+
 	@Test
 	public void altura0() {
 		int altura = arbolBinario.altura(arbolBinario.retornarRaiz());

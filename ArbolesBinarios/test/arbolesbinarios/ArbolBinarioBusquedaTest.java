@@ -1,5 +1,8 @@
 package arbolesbinarios;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -149,7 +152,7 @@ public class ArbolBinarioBusquedaTest {
 	}
 
 	@Test
-	public void debeInsertarEnElOrden11161463823262421() {
+	public void debeInsertarEnElOrden111614638232624() {
 		ArbolBinarioBusqueda pruebaArbol = new ArbolBinarioBusqueda();
 		estudiante = new Estudiante(11, "juan", "calle", 20);
 		pruebaArbol.insertar(estudiante);
@@ -406,6 +409,91 @@ public class ArbolBinarioBusquedaTest {
 		Assert.assertFalse("se esperaba no encontrara el estudiante con cedula 13", arbolBinario.eliminar(13));
 		Assert.assertTrue("se esperaba eliminara el estudiante con cedula 16", arbolBinario.eliminar(16));
 		Assert.assertTrue("se esperaba que el arbo quede vacio", arbolBinario.isEmpty());
+	}
+
+	@Test
+	public void debeEliminar111614638232624() {
+		estudiante = new Estudiante(11, null, null, 0);
+		arbolBinario.insertar(estudiante);
+
+		estudiante = new Estudiante(16, null, null, 0);
+		arbolBinario.insertar(estudiante);
+
+		estudiante = new Estudiante(14, null, null, 0);
+		arbolBinario.insertar(estudiante);
+
+		estudiante = new Estudiante(6, null, null, 0);
+		arbolBinario.insertar(estudiante);
+
+		estudiante = new Estudiante(3, null, null, 0);
+		arbolBinario.insertar(estudiante);
+
+		estudiante = new Estudiante(8, null, null, 0);
+		arbolBinario.insertar(estudiante);
+
+		estudiante = new Estudiante(23, null, null, 0);
+		arbolBinario.insertar(estudiante);
+
+		estudiante = new Estudiante(26, null, null, 0);
+		arbolBinario.insertar(estudiante);
+
+		estudiante = new Estudiante(24, null, null, 0);
+		arbolBinario.insertar(estudiante);
+
+		assertTrue("se esperaba elimine el estudiante con cedula 6", arbolBinario.eliminar(6));
+		assertNotNull("se esperaba exista el estudiante con cedula 11", arbolBinario.buscarEstudianteConCedula(11));
+		assertNotNull("se esperaba exista el estudiante con cedula 16", arbolBinario.buscarEstudianteConCedula(16));
+		assertNotNull("se esperaba exista el estudiante con cedula 14", arbolBinario.buscarEstudianteConCedula(14));
+		assertNotNull("se esperaba exista el estudiante con cedula 24", arbolBinario.buscarEstudianteConCedula(24));
+		assertNotNull("se esperaba exista el estudiante con cedula 26", arbolBinario.buscarEstudianteConCedula(26));
+		assertNotNull("se esperaba exista el estudiante con cedula 23", arbolBinario.buscarEstudianteConCedula(23));
+		assertNotNull("se esperaba exista el estudiante con cedula 3", arbolBinario.buscarEstudianteConCedula(3));
+		assertNotNull("se esperaba exista el estudiante con cedula 8", arbolBinario.buscarEstudianteConCedula(8));
+
+		assertTrue("se esperaba elimine el estudiante con cedula 11", arbolBinario.eliminar(11));
+		assertNotNull("se esperaba exista el estudiante con cedula 16", arbolBinario.buscarEstudianteConCedula(16));
+		assertNotNull("se esperaba exista el estudiante con cedula 14", arbolBinario.buscarEstudianteConCedula(14));
+		assertNotNull("se esperaba exista el estudiante con cedula 24", arbolBinario.buscarEstudianteConCedula(24));
+		assertNotNull("se esperaba exista el estudiante con cedula 26", arbolBinario.buscarEstudianteConCedula(26));
+		assertNotNull("se esperaba exista el estudiante con cedula 23", arbolBinario.buscarEstudianteConCedula(23));
+		assertNotNull("se esperaba exista el estudiante con cedula 3", arbolBinario.buscarEstudianteConCedula(3));
+		assertNotNull("se esperaba exista el estudiante con cedula 8", arbolBinario.buscarEstudianteConCedula(8));
+
+		assertTrue("se esperaba elimine el estudiante con cedula 24", arbolBinario.eliminar(24));
+		assertNotNull("se esperaba exista el estudiante con cedula 16", arbolBinario.buscarEstudianteConCedula(16));
+		assertNotNull("se esperaba exista el estudiante con cedula 14", arbolBinario.buscarEstudianteConCedula(14));
+		assertNotNull("se esperaba exista el estudiante con cedula 26", arbolBinario.buscarEstudianteConCedula(26));
+		assertNotNull("se esperaba exista el estudiante con cedula 23", arbolBinario.buscarEstudianteConCedula(23));
+		assertNotNull("se esperaba exista el estudiante con cedula 3", arbolBinario.buscarEstudianteConCedula(3));
+		assertNotNull("se esperaba exista el estudiante con cedula 8", arbolBinario.buscarEstudianteConCedula(8));
+
+		assertTrue("se esperaba elimine el estudiante con cedula 16", arbolBinario.eliminar(16));
+		assertNotNull("se esperaba exista el estudiante con cedula 14", arbolBinario.buscarEstudianteConCedula(14));
+		assertNotNull("se esperaba exista el estudiante con cedula 26", arbolBinario.buscarEstudianteConCedula(26));
+		assertNotNull("se esperaba exista el estudiante con cedula 23", arbolBinario.buscarEstudianteConCedula(23));
+		assertNotNull("se esperaba exista el estudiante con cedula 3", arbolBinario.buscarEstudianteConCedula(3));
+		assertNotNull("se esperaba exista el estudiante con cedula 8", arbolBinario.buscarEstudianteConCedula(8));
+
+		assertTrue("se esperaba elimine el estudiante con cedula 26", arbolBinario.eliminar(26));
+		assertNotNull("se esperaba exista el estudiante con cedula 14", arbolBinario.buscarEstudianteConCedula(14));
+		assertNotNull("se esperaba exista el estudiante con cedula 23", arbolBinario.buscarEstudianteConCedula(23));
+		assertNotNull("se esperaba exista el estudiante con cedula 3", arbolBinario.buscarEstudianteConCedula(3));
+		assertNotNull("se esperaba exista el estudiante con cedula 8", arbolBinario.buscarEstudianteConCedula(8));
+
+		assertTrue("se esperaba elimine el estudiante con cedula 14", arbolBinario.eliminar(14));
+		assertNotNull("se esperaba exista el estudiante con cedula 23", arbolBinario.buscarEstudianteConCedula(23));
+		assertNotNull("se esperaba exista el estudiante con cedula 3", arbolBinario.buscarEstudianteConCedula(3));
+		assertNotNull("se esperaba exista el estudiante con cedula 8", arbolBinario.buscarEstudianteConCedula(8));
+
+		assertTrue("se esperaba elimine el estudiante con cedula 3", arbolBinario.eliminar(3));
+		assertNotNull("se esperaba exista el estudiante con cedula 23", arbolBinario.buscarEstudianteConCedula(23));
+		assertNotNull("se esperaba exista el estudiante con cedula 8", arbolBinario.buscarEstudianteConCedula(8));
+		
+		assertTrue("se esperaba elimine el estudiante con cedula 8", arbolBinario.eliminar(8));
+		assertNotNull("se esperaba exista el estudiante con cedula 23", arbolBinario.buscarEstudianteConCedula(23));
+		
+		assertTrue("se esperaba elimine el estudiante con cedula 23", arbolBinario.eliminar(23));
+		assertTrue("se esperaba que el arbol este vacio", arbolBinario.isEmpty());
 	}
 
 	@Test

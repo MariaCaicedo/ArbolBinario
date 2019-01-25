@@ -22,9 +22,9 @@ public class ArbolBinarioBusqueda {
 
 	public void mustraDatoEnInorden(Nodo raiz) {
 		if (raiz != null) {
-			mustraDatoEnInorden(raiz.getLigaDerecha());
-			System.out.println(raiz.getEstudiante().toString());
 			mustraDatoEnInorden(raiz.getLigaIzquierda());
+			System.out.println(raiz.getEstudiante().toString());
+			mustraDatoEnInorden(raiz.getLigaDerecha());
 		}
 	}
 
